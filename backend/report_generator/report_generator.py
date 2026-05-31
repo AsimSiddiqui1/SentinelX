@@ -53,3 +53,12 @@ End of Report
 """
 
     return report
+
+def save_report(report, incident_id):
+
+    filename = f"reports/{incident_id}.txt"
+
+    with open(filename, "w") as file:
+        file.write(report)
+
+    return filename
