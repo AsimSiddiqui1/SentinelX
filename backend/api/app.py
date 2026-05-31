@@ -1,3 +1,4 @@
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from backend.shared.incident_manager import generate_incident_id
 from backend.shared.severity_engine import calculate_severity
@@ -27,6 +28,10 @@ def home():
         "message": "Welcome to SentinelX"
     }
 
+@app.get("/dashboard")
+def dashboard():
+    return FileResponse("backend/templates/index.html")
+    
 @app.get("/simulate")
 def simulate():
 
