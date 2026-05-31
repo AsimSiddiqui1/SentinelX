@@ -1,3 +1,4 @@
+from backend.shared.timeline import generate_timeline
 from backend.shared.soc_alert import generate_alert
 from backend.shared.severity_engine import calculate_severity
 from backend.shared.attack_data import attacks
@@ -25,6 +26,7 @@ alert = generate_alert(
     target
 )
 
+
 print("\n===== SentinelX Security Pipeline =====\n")
 
 print(f"Incident ID     : {incident_id}")
@@ -41,7 +43,16 @@ print("\nGenerated Logs:")
 
 for log in data["logs"]:
     print(f"  [LOG] {log}")
+
 print(alert)
+
+timeline = generate_timeline()
+
+print("\nIncident Timeline:")
+
+for event in timeline:
+    print(f"  {event}")
+    
 print("\nPipeline Status:")
 print("  Attack Simulator  ✅")
 print("  Log Generator     ✅")
