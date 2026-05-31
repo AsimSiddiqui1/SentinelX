@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>SentinelX Dashboard</title>
 
@@ -43,7 +44,27 @@
             font-weight: bold;
         }
 
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th {
+            padding: 10px;
+            background: #f2f2f2;
+        }
+
+        td {
+            padding: 10px;
+        }
+
     </style>
+
 </head>
 
 <body>
@@ -58,35 +79,17 @@
 
         <h2>Incident Details</h2>
 
-        <p>
-            <b>Incident ID:</b>
-            <span id="incident">-</span>
-        </p>
+        <p><b>Incident ID:</b> <span id="incident">-</span></p>
 
-        <p>
-            <b>Attack:</b>
-            <span id="attack">-</span>
-        </p>
+        <p><b>Attack:</b> <span id="attack">-</span></p>
 
-        <p>
-            <b>Severity:</b>
-            <span id="severity">-</span>
-        </p>
+        <p><b>Severity:</b> <span id="severity">-</span></p>
 
-        <p>
-            <b>MITRE:</b>
-            <span id="mitre">-</span>
-        </p>
+        <p><b>MITRE:</b> <span id="mitre">-</span></p>
 
-        <p>
-            <b>Risk Score:</b>
-            <span id="risk">-</span>
-        </p>
+        <p><b>Risk Score:</b> <span id="risk">-</span></p>
 
-        <p>
-            <b>Target Asset:</b>
-            <span id="target">-</span>
-        </p>
+        <p><b>Target Asset:</b> <span id="target">-</span></p>
 
         <h3>Generated Logs</h3>
         <ul id="logs"></ul>
@@ -96,60 +99,121 @@
 
     </div>
 
-    <script>
+    <div class="card">
 
-        async function loadIncident() {
+        <h2>Incident History</h2>
 
-            const response =
-                await fetch("/incident");
+        <table>
 
-            const data =
-                await response.json();
+            <thead>
 
-            document.getElementById("incident").textContent =
-                data.incident_id;
+                <tr>
+                    <th>Incident ID</th>
+                    <th>Attack</th>
+                    <th>Severity</th>
+                    <th>Asset</th>
+                </tr>
 
-            document.getElementById("attack").textContent =
-                data.attack;
+            </thead>
 
-            document.getElementById("mitre").textContent =
-                data.mitre;
+            <tbody id="history-table">
 
-            document.getElementById("risk").textContent =
-                data.risk_score;
+            </tbody>
 
-            document.getElementById("target").textContent =
-                data.target_asset;
+        </table>
 
-            const severityElement =
-                document.getElementById("severity");
+    </div>
 
-            severityElement.textContent =
-                data.severity;
+<script>
 
-            severityElement.className =
-                data.severity.toLowerCase();
+async function loadIncident() {
 
-            let logsHTML = "";
+    const response =
+        await fetch("/incident");
 
-            data.logs.forEach(log => {
-                logsHTML += `<li>${log}</li>`;
-            });
+    const data =
+        await response.json();
 
-            document.getElementById("logs").innerHTML =
-                logsHTML;
+    document.getElementById("incident").textContent =
+        data.incident_id;
 
-            let timelineHTML = "";
+    document.getElementById("attack").textContent =
+        data.attack;
 
-            data.timeline.forEach(event => {
-                timelineHTML += `<li>${event}</li>`;
-            });
+    document.getElementById("mitre").textContent =
+        data.mitre;
 
-            document.getElementById("timeline").innerHTML =
-                timelineHTML;
-        }
+    document.getElementById("risk").textContent =
+        data.risk_score;
 
-    </script>
+    document.getElementById("target").textContent =
+        data.target_asset;
+
+    const severityElement =
+        document.getElementById("severity");
+
+    severityElement.textContent =
+        data.severity;
+
+    severityElement.className =
+        data.severity.toLowerCase();
+
+    let logsHTML = "";
+
+    data.logs.forEach(log => {
+
+        logsHTML += `<li>${log}</li>`;
+
+    });
+
+    document.getElementById("logs").innerHTML =
+        logsHTML;
+
+    let timelineHTML = "";
+
+    data.timeline.forEach(event => {
+
+        timelineHTML += `<li>${event}</li>`;
+
+    });
+
+    document.getElementById("timeline").innerHTML =
+        timelineHTML;
+
+    loadHistory();
+}
+
+async function loadHistory() {
+
+    const response =
+        await fetch("/history");
+
+    const data =
+        await response.json();
+
+    let html = "";
+
+    data.forEach(item => {
+
+        html += `
+        <tr>
+            <td>${item.incident_id}</td>
+            <td>${item.attack}</td>
+            <td>${item.severity}</td>
+            <td>${item.asset}</td>
+        </tr>
+        `;
+
+    });
+
+    document.getElementById(
+        "history-table"
+    ).innerHTML = html;
+}
+
+window.onload = loadHistory;
+
+</script>
 
 </body>
 </html>
