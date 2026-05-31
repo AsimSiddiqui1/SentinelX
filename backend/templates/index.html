@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SentinelX Dashboard</title>
+</head>
+<body>
 
+    <h1>SentinelX Dashboard</h1>
+
+    <button onclick="loadIncident()">
+        Generate Incident
+    </button>
+
+    <pre id="output"></pre>
+
+    <script>
+
+        async function loadIncident() {
+
+            const response =
+                await fetch(
+                    "https://bookish-guide-wr9x4j57jwxv3vjrq-8000.app.github.dev/incident"
+                );
+
+            const data =
+                await response.json();
+
+            document.getElementById(
+                "output"
+            ).textContent =
+                JSON.stringify(
+                    data,
+                    null,
+                    2
+                );
+        }
+
+    </script>
+
+</body>
+</html>
