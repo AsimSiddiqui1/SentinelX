@@ -1,3 +1,4 @@
+from backend.report_generator.report_generator import generate_report
 from backend.shared.timeline import generate_timeline
 from backend.shared.soc_alert import generate_alert
 from backend.shared.severity_engine import calculate_severity
@@ -48,6 +49,16 @@ print(alert)
 
 timeline = generate_timeline()
 
+report = generate_report(
+    incident_id,
+    attack,
+    target,
+    severity,
+    data["mitre"],
+    data["logs"],
+    timeline
+)
+
 print("\nIncident Timeline:")
 
 for event in timeline:
@@ -59,3 +70,5 @@ print("  Log Generator     ✅")
 print("  AI Defender       ✅")
 
 print("\n=======================================\n")
+
+print(report)
