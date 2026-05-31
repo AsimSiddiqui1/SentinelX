@@ -1,3 +1,4 @@
+from fastapi.middleware.cors import CORSMiddleware
 from backend.shared.incident_manager import generate_incident_id
 from backend.shared.severity_engine import calculate_severity
 from backend.shared.timeline import generate_timeline
@@ -10,6 +11,14 @@ from backend.database.assets import assets
 app = FastAPI(
     title="SentinelX API",
     version="1.0"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.get("/")
