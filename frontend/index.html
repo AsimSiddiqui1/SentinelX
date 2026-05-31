@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SentinelX Dashboard</title>
+</head>
+<body>
 
+    <h1>SentinelX Dashboard</h1>
+
+    <button onclick="loadIncident()">
+        Generate Incident
+    </button>
+
+    <pre id="output"></pre>
+
+    <script>
+
+        async function loadIncident() {
+
+            const response =
+                await fetch(
+                    "YOUR_INCIDENT_URL_HERE"
+                );
+
+            const data =
+                await response.json();
+
+            document.getElementById(
+                "output"
+            ).textContent =
+                JSON.stringify(
+                    data,
+                    null,
+                    2
+                );
+        }
+
+    </script>
+
+</body>
+</html>
