@@ -1,0 +1,20 @@
+[
+  {
+    "asset_id": "WEB-01",
+    "name": "Web Server",
+    "ip": "10.0.1.10",
+    "criticality": "High"
+  },
+  {
+    "asset_id": "DB-01",
+    "name": "Database Server",
+    "ip": "10.0.1.20",
+    "criticality": "Critical"
+  },
+  {
+    "asset_id": "HR-PC-01",
+    "name": "HR Workstation",
+    "ip": "10.0.2.10",
+    "criticality": "Medium"
+  }
+]
