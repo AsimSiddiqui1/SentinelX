@@ -1,3 +1,4 @@
+from backend.shared.soc_alert import generate_alert
 from backend.shared.severity_engine import calculate_severity
 from backend.shared.attack_data import attacks
 from backend.database.assets import assets
@@ -17,6 +18,13 @@ severity = calculate_severity(
     data["risk"],
     target["criticality"]
 )
+alert = generate_alert(
+    incident_id,
+    attack,
+    severity,
+    target
+)
+
 print("\n===== SentinelX Security Pipeline =====\n")
 
 print(f"Incident ID     : {incident_id}")
@@ -29,12 +37,11 @@ print(f"Criticality     : {target['criticality']}")
 print(f"\nMITRE Technique : {data['mitre']}")
 print(f"Risk Score      : {data['risk']}/100")
 print(f"Severity        : {severity}")
-
 print("\nGenerated Logs:")
 
 for log in data["logs"]:
     print(f"  [LOG] {log}")
-
+print(alert)
 print("\nPipeline Status:")
 print("  Attack Simulator  ✅")
 print("  Log Generator     ✅")
