@@ -2,37 +2,151 @@
 <html>
 <head>
     <title>SentinelX Dashboard</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .card {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .critical {
+            color: red;
+            font-weight: bold;
+        }
+
+        .high {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .medium {
+            color: goldenrod;
+            font-weight: bold;
+        }
+
+        .low {
+            color: green;
+            font-weight: bold;
+        }
+
+    </style>
 </head>
+
 <body>
 
-    <h1>SentinelX Dashboard</h1>
+    <h1>🛡️ SentinelX Dashboard</h1>
 
     <button onclick="loadIncident()">
         Generate Incident
     </button>
 
-    <pre id="output"></pre>
+    <div class="card">
+
+        <h2>Incident Details</h2>
+
+        <p>
+            <b>Incident ID:</b>
+            <span id="incident">-</span>
+        </p>
+
+        <p>
+            <b>Attack:</b>
+            <span id="attack">-</span>
+        </p>
+
+        <p>
+            <b>Severity:</b>
+            <span id="severity">-</span>
+        </p>
+
+        <p>
+            <b>MITRE:</b>
+            <span id="mitre">-</span>
+        </p>
+
+        <p>
+            <b>Risk Score:</b>
+            <span id="risk">-</span>
+        </p>
+
+        <p>
+            <b>Target Asset:</b>
+            <span id="target">-</span>
+        </p>
+
+        <h3>Generated Logs</h3>
+        <ul id="logs"></ul>
+
+        <h3>Incident Timeline</h3>
+        <ul id="timeline"></ul>
+
+    </div>
 
     <script>
 
         async function loadIncident() {
 
             const response =
-                await fetch(
-                    "/incident"
-                );
+                await fetch("/incident");
 
             const data =
                 await response.json();
 
-            document.getElementById(
-                "output"
-            ).textContent =
-                JSON.stringify(
-                    data,
-                    null,
-                    2
-                );
+            document.getElementById("incident").textContent =
+                data.incident_id;
+
+            document.getElementById("attack").textContent =
+                data.attack;
+
+            document.getElementById("mitre").textContent =
+                data.mitre;
+
+            document.getElementById("risk").textContent =
+                data.risk_score;
+
+            document.getElementById("target").textContent =
+                data.target_asset;
+
+            const severityElement =
+                document.getElementById("severity");
+
+            severityElement.textContent =
+                data.severity;
+
+            severityElement.className =
+                data.severity.toLowerCase();
+
+            let logsHTML = "";
+
+            data.logs.forEach(log => {
+                logsHTML += `<li>${log}</li>`;
+            });
+
+            document.getElementById("logs").innerHTML =
+                logsHTML;
+
+            let timelineHTML = "";
+
+            data.timeline.forEach(event => {
+                timelineHTML += `<li>${event}</li>`;
+            });
+
+            document.getElementById("timeline").innerHTML =
+                timelineHTML;
         }
 
     </script>
