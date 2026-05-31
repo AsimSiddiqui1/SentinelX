@@ -37,5 +37,14 @@ attacks = {
             "Webshell upload attempt",
             "Unauthorized admin access"
         ]
-    }
+    },
+    "Password Spray": {
+    "mitre": "T1110.003",
+    "risk": 70,
+    "logs": [
+        "Multiple accounts targeted",
+        "Repeated password attempts detected",
+        "Authentication anomaly observed"
+    ]
+}
 }
