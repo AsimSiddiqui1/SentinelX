@@ -1,15 +1,13 @@
+import random
 from backend.shared.attack_data import attacks
 
-attack = "Phishing"
+# Select random attack
+attack = random.choice(list(attacks.keys()))
 
+# Get attack details
 data = attacks[attack]
 
-print("\n===== SentinelX AI Defender =====")
-
-print(f"Detected Attack : {attack}")
-print(f"MITRE Technique : {data['mitre']}")
-print(f"Risk Score      : {data['risk']}/100")
-
+# Calculate severity
 if data["risk"] >= 90:
     severity = "Critical"
 elif data["risk"] >= 80:
@@ -19,10 +17,7 @@ elif data["risk"] >= 60:
 else:
     severity = "Low"
 
-print(f"Severity        : {severity}")
-
-print("\nRecommended Actions:")
-
+# Recommendations
 recommendations = {
     "Phishing": [
         "Reset affected credentials",
@@ -49,5 +44,19 @@ recommendations = {
     ]
 }
 
+print("\n===== SentinelX AI Defender =====\n")
+
+print(f"Detected Attack : {attack}")
+print(f"MITRE Technique : {data['mitre']}")
+print(f"Risk Score      : {data['risk']}/100")
+print(f"Severity        : {severity}")
+
+print("\nGenerated Logs:")
+for log in data["logs"]:
+    print(f"  [LOG] {log}")
+
+print("\nRecommended Actions:")
 for rec in recommendations[attack]:
-    print(f"- {rec}")
+    print(f"  - {rec}")
+
+print("\n=================================\n")
