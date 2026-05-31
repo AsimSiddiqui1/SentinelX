@@ -1,3 +1,4 @@
+from backend.shared.severity_engine import calculate_severity
 from backend.shared.attack_data import attacks
 from backend.database.assets import assets
 from backend.shared.incident_manager import generate_incident_id
@@ -12,7 +13,10 @@ data = attacks[attack]
 
 # Select target asset
 target = random.choice(assets)
-
+severity = calculate_severity(
+    data["risk"],
+    target["criticality"]
+)
 print("\n===== SentinelX Security Pipeline =====\n")
 
 print(f"Incident ID     : {incident_id}")
@@ -24,6 +28,7 @@ print(f"Criticality     : {target['criticality']}")
 
 print(f"\nMITRE Technique : {data['mitre']}")
 print(f"Risk Score      : {data['risk']}/100")
+print(f"Severity        : {severity}")
 
 print("\nGenerated Logs:")
 
