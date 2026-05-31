@@ -1,7 +1,7 @@
 attacks = {
     "Brute Force": {
         "mitre": "T1110",
-        "risk": 70,
+        "risk": 40,
         "logs": [
             "Multiple failed login attempts",
             "Account lockout triggered",
