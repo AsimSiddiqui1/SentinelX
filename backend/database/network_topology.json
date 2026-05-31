@@ -1,0 +1,11 @@
+{
+  "internet": true,
+  "firewall": true,
+  "servers": [
+    "WEB-01",
+    "DB-01"
+  ],
+  "workstations": [
+    "HR-PC-01"
+  ]
+}
