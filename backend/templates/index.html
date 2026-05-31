@@ -129,6 +129,35 @@ th, td {
     <button onclick="loadIncident()">
         Generate Incident
     </button>
+    
+    <div class="stats-container">
+
+    <div class="stat-card">
+        <h3>Total Incidents</h3>
+        <p id="total-incidents">0</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Critical</h3>
+        <p id="critical-count">0</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>High</h3>
+        <p id="high-count">0</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Medium</h3>
+        <p id="medium-count">0</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Low</h3>
+        <p id="low-count">0</p>
+    </div>
+
+</div>
 
     <div class="card">
 
@@ -248,7 +277,17 @@ async function loadHistory() {
 
     let html = "";
 
+    let critical = 0;
+    let high = 0;
+    let medium = 0;
+    let low = 0;
+
     data.forEach(item => {
+
+        if(item.severity === "Critical") critical++;
+        if(item.severity === "High") high++;
+        if(item.severity === "Medium") medium++;
+        if(item.severity === "Low") low++;
 
         html += `
         <tr>
@@ -261,14 +300,31 @@ async function loadHistory() {
 
     });
 
-    document.getElementById(
-        "history-table"
-    ).innerHTML = html;
+    document.getElementById("history-table").innerHTML =
+        html;
+
+    document.getElementById("total-incidents").textContent =
+        data.length;
+
+    document.getElementById("critical-count").textContent =
+        critical;
+
+    document.getElementById("high-count").textContent =
+        high;
+
+    document.getElementById("medium-count").textContent =
+        medium;
+
+    const lowElement =
+        document.getElementById("low-count");
+
+    if (lowElement) {
+        lowElement.textContent = low;
+    }
 }
 
 window.onload = loadHistory;
 
 </script>
-
 </body>
 </html>
