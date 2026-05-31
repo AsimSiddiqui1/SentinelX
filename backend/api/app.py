@@ -1,3 +1,4 @@
+from backend.database.incident_history import incident_history
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from backend.shared.incident_manager import generate_incident_id
@@ -66,6 +67,13 @@ def incident():
 
     timeline = generate_timeline()
 
+    incident_history.append({
+    "incident_id": incident_id,
+    "attack": attack,
+    "severity": severity,
+    "asset": target["id"]
+})
+
     return {
         "incident_id": incident_id,
         "attack": attack,
@@ -76,3 +84,7 @@ def incident():
         "logs": data["logs"],
         "timeline": timeline
     }
+
+@app.get("/history")
+def history():
+    return incident_history
