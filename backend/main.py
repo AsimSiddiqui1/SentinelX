@@ -1,4 +1,7 @@
-from backend.report_generator.report_generator import generate_report
+from backend.report_generator.report_generator import (
+    generate_report,
+    save_report
+)
 from backend.shared.timeline import generate_timeline
 from backend.shared.soc_alert import generate_alert
 from backend.shared.severity_engine import calculate_severity
@@ -59,6 +62,11 @@ report = generate_report(
     timeline
 )
 
+saved_file = save_report(
+    report,
+    incident_id
+)
+
 print("\nIncident Timeline:")
 
 for event in timeline:
@@ -72,3 +80,5 @@ print("  AI Defender       ✅")
 print("\n=======================================\n")
 
 print(report)
+
+print(f"\nReport Saved: {saved_file}")
