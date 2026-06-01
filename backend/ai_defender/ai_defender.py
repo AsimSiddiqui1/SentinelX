@@ -20,11 +20,16 @@ def detect_attack(logs):
     elif "multiple accounts targeted" in text:
         return "Password Spray"
 
+    elif "repeated password attempts" in text:
+        return "Password Spray"
+
     elif "privilege escalation" in text:
         return "Privilege Escalation"
 
-    return "Unknown"
+    elif "admin token abuse" in text:
+        return "Privilege Escalation"
 
+    return "Unknown"
 
 def calculate_attack_severity(attack):
 
