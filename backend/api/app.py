@@ -74,13 +74,13 @@ if detected_attack == "Unknown":
 
 data = attacks[detected_attack]
 
-    target = random.choice(assets)
+target = random.choice(assets)
 
-    incident_id = generate_incident_id()
+incident_id = generate_incident_id()
 
-    severity = calculate_severity(
-        data["risk"],
-        target["criticality"]
+severity = calculate_severity(
+    data["risk"],
+    target["criticality"]
     )
 
     timeline = generate_timeline()
