@@ -417,7 +417,7 @@ async function launchAttack() {
 
     await loadHistory();
 
-    document.getElementById("incident-id").textContent =
+    document.getElementById("incident").textContent =
         data.incident_id;
 
     document.getElementById("attack").textContent =
@@ -429,13 +429,13 @@ async function launchAttack() {
     document.getElementById("mitre").textContent =
         data.mitre;
 
-    document.getElementById("risk-score").textContent =
+    document.getElementById("risk").textContent =
         data.risk_score;
 
-    document.getElementById("target-asset").textContent =
+    document.getElementById("target").textContent =
         data.target_asset;
 }
-}
+
     function searchHistory() {
 
     const filter =
