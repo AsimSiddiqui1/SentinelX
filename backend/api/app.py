@@ -58,50 +58,48 @@ def launch_attack(attack_type: str):
 
     result = simulate_attack(attack_type)
 
-    print("Result:", result)
-
     detected_attack = detect_attack(
         result["logs"]
     )
 
-print("Detected:", detected_attack)
+    print("Detected:", detected_attack)
 
-if detected_attack == "Unknown":
+    if detected_attack == "Unknown":
+        return {
+            "error": "Unknown attack",
+            "logs": result["logs"]
+        }
+
+    data = attacks[detected_attack]
+
+    target = random.choice(assets)
+
+    incident_id = generate_incident_id()
+
+    severity = calculate_severity(
+        data["risk"],
+        target["criticality"]
+    )
+
+    timeline = generate_timeline()
+
+    incident_history.append({
+        "incident_id": incident_id,
+        "attack": detected_attack,
+        "severity": severity,
+        "asset": target["id"]
+    })
+
     return {
-        "error": "Unknown attack",
-        "logs": result["logs"]
+        "incident_id": incident_id,
+        "attack": detected_attack,
+        "mitre": data["mitre"],
+        "severity": severity,
+        "risk_score": data["risk"],
+        "target_asset": target["id"],
+        "logs": result["logs"],
+        "timeline": timeline
     }
-
-data = attacks[detected_attack]
-
-target = random.choice(assets)
-
-incident_id = generate_incident_id()
-
-severity = calculate_severity(
-    data["risk"],
-    target["criticality"]
-)
-
-timeline = generate_timeline()
-
-incident_history.append({
-    "incident_id": incident_id,
-    "attack": detected_attack,
-    "severity": severity,
-    "asset": target["id"]
-})
-
-return {
-    "incident_id": incident_id,
-    "attack": detected_attack,
-    "mitre": data["mitre"],
-    "severity": severity,
-    "risk_score": data["risk"],
-    "target_asset": target["id"],
-    "logs": result["logs"],
-    "timeline": timeline
-}
 @app.get("/incident")
 def incident():
 
