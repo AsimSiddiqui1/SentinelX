@@ -1,3 +1,5 @@
+from backend.attack_engine.attack_simulator import simulate_attack
+from backend.ai_defender.ai_defender import detect_attack
 from backend.database.incident_history import incident_history
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -49,12 +51,27 @@ def simulate():
         "asset_type": target["type"],
         "criticality": target["criticality"]
     }
+@app.get("/launch/{attack_type}")
+def launch_attack(attack_type: str):
 
+    logs = simulate_attack(attack_type)
+
+    detected_attack = detect_attack(logs)
+
+    return {
+        "selected_attack": attack_type,
+        "detected_attack": detected_attack,
+        "logs": logs
+    }
 @app.get("/incident")
 def incident():
 
-    attack = random.choice(list(attacks.keys()))
-    data = attacks[attack]
+attack = "Phishing"
+logs = simulate_attack(attack)
+
+detected_attack = detect_attack(logs)
+
+data = attacks[detected_attack]
 
     target = random.choice(assets)
 
@@ -81,7 +98,7 @@ def incident():
         "severity": severity,
         "risk_score": data["risk"],
         "target_asset": target["id"],
-        "logs": data["logs"],
+        "logs": logs,
         "timeline": timeline
     }
 
