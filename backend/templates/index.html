@@ -205,9 +205,23 @@ th, td {
 
     <div class="card">
 
-        <h2>Incident History</h2>
+          <h2>Incident History</h2>
 
-        <table>
+    <input
+        type="text"
+        id="search"
+        placeholder="Search Incident ID..."
+        onkeyup="searchHistory()"
+        style="
+            padding:10px;
+            width:300px;
+            margin-bottom:15px;
+            border-radius:8px;
+            border:none;
+        "
+    />
+
+    <table>
 
             <thead>
 
@@ -370,6 +384,36 @@ severityChart = new Chart(ctx, {
         maintainAspectRatio: false
     }
 });
+}
+
+    function searchHistory() {
+
+    const filter =
+        document.getElementById("search")
+        .value
+        .toUpperCase();
+
+    const rows =
+        document.querySelectorAll(
+            "#history-table tr"
+        );
+
+    rows.forEach(row => {
+
+        const incident =
+            row.cells[0].textContent;
+
+        if (
+            incident.toUpperCase()
+            .includes(filter)
+        ) {
+            row.style.display = "";
+        }
+        else {
+            row.style.display = "none";
+        }
+
+    });
 }
 
 function downloadReport() {
