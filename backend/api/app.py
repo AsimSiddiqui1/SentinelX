@@ -66,12 +66,13 @@ def launch_attack(attack_type: str):
 @app.get("/incident")
 def incident():
 
-attack = "Phishing"
-logs = simulate_attack(attack)
+    attack = "Phishing"
 
-detected_attack = detect_attack(logs)
+    logs = simulate_attack(attack)
 
-data = attacks[detected_attack]
+    detected_attack = detect_attack(logs)
+
+    data = attacks[detected_attack]
 
     target = random.choice(assets)
 
@@ -81,6 +82,7 @@ data = attacks[detected_attack]
         data["risk"],
         target["criticality"]
     )
+
 
     timeline = generate_timeline()
 
