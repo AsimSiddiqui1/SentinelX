@@ -1,52 +1,33 @@
-import random
-from datetime import datetime
+def simulate_attack(attack_type):
 
-attacks = {
-    "Brute Force": {
-        "mitre": "T1110",
-        "logs": [
+    if attack_type == "Brute Force":
+        return [
             "Multiple failed login attempts",
             "Account lockout triggered",
             "Suspicious authentication request"
         ]
-    },
 
-    "Phishing": {
-        "mitre": "T1566",
-        "logs": [
+    elif attack_type == "Phishing":
+        return [
             "Phishing email received",
             "User clicked malicious link",
             "Credential submission detected"
         ]
-    },
 
-    "Ransomware": {
-        "mitre": "T1486",
-        "logs": [
+    elif attack_type == "Ransomware":
+        return [
             "Suspicious file execution",
             "Mass file encryption detected",
             "Ransom note created"
         ]
-    },
 
-    "Web Exploitation": {
-        "mitre": "T1190",
-        "logs": [
+    elif attack_type == "Web Exploitation":
+        return [
             "SQL Injection attempt detected",
             "Webshell upload attempt",
             "Unauthorized admin access"
         ]
-    }
-}
 
-attack = random.choice(list(attacks.keys()))
-
-print("\n===== SentinelX Attack Simulator =====")
-print(f"Time: {datetime.now()}")
-print(f"Attack: {attack}")
-print(f"MITRE: {attacks[attack]['mitre']}")
-
-print("\nGenerated Logs:")
-
-for log in attacks[attack]["logs"]:
-    print(f"[LOG] {log}")
+    return [
+        "Unknown security event"
+    ]
