@@ -133,9 +133,21 @@ th, td {
 
     <h1>🛡️ SentinelX Dashboard</h1>
 
-    <button onclick="loadIncident()">
-        Generate Incident
-    </button>
+    <select id="attack-select">
+
+    <option>Phishing</option>
+
+    <option>Brute Force</option>
+
+    <option>Ransomware</option>
+
+    <option>Web Exploitation</option>
+
+</select>
+
+<button onclick="launchAttack()">
+    Launch Attack
+</button>
 
     <button onclick="downloadReport()">
         Download Report
@@ -388,7 +400,27 @@ severityChart = new Chart(ctx, {
     }
 });
 }
+async function launchAttack() {
 
+    const attack =
+        document.getElementById(
+            "attack-select"
+        ).value;
+
+    const response =
+        await fetch(
+            `/launch/${attack}`
+        );
+
+    const data =
+        await response.json();
+
+    alert(
+        `Attack Launched\n\n` +
+        `Selected: ${data.selected_attack}\n` +
+        `Detected: ${data.detected_attack}`
+    );
+}
     function searchHistory() {
 
     const filter =
