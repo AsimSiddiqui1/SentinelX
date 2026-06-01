@@ -1,62 +1,74 @@
-import random
 from backend.shared.attack_data import attacks
 
-# Select random attack
-attack = random.choice(list(attacks.keys()))
 
-# Get attack details
-data = attacks[attack]
+def detect_attack(logs):
 
-# Calculate severity
-if data["risk"] >= 90:
-    severity = "Critical"
-elif data["risk"] >= 80:
-    severity = "High"
-elif data["risk"] >= 60:
-    severity = "Medium"
-else:
-    severity = "Low"
+    text = " ".join(logs).lower()
 
-# Recommendations
-recommendations = {
-    "Phishing": [
-        "Reset affected credentials",
-        "Block malicious domain",
-        "Enable MFA"
-    ],
+    if "failed login" in text:
+        return "Brute Force"
 
-    "Brute Force": [
-        "Block attacking IP",
-        "Enable account lockout",
-        "Enforce MFA"
-    ],
+    elif "credential submission" in text:
+        return "Phishing"
 
-    "Ransomware": [
-        "Isolate infected host",
-        "Disconnect network access",
-        "Restore from backup"
-    ],
+    elif "mass file encryption" in text:
+        return "Ransomware"
 
-    "Web Exploitation": [
-        "Patch vulnerable application",
-        "Review web server logs",
-        "Block malicious requests"
-    ]
-}
+    elif "sql injection" in text:
+        return "Web Exploitation"
 
-print("\n===== SentinelX AI Defender =====\n")
+    return "Unknown"
 
-print(f"Detected Attack : {attack}")
-print(f"MITRE Technique : {data['mitre']}")
-print(f"Risk Score      : {data['risk']}/100")
-print(f"Severity        : {severity}")
 
-print("\nGenerated Logs:")
-for log in data["logs"]:
-    print(f"  [LOG] {log}")
+def calculate_attack_severity(attack):
 
-print("\nRecommended Actions:")
-for rec in recommendations[attack]:
-    print(f"  - {rec}")
+    if attack not in attacks:
+        return "Low"
 
-print("\n=================================\n")
+    risk = attacks[attack]["risk"]
+
+    if risk >= 90:
+        return "Critical"
+
+    elif risk >= 80:
+        return "High"
+
+    elif risk >= 60:
+        return "Medium"
+
+    return "Low"
+
+
+def get_recommendations(attack):
+
+    recommendations = {
+
+        "Phishing": [
+            "Reset affected credentials",
+            "Block malicious domain",
+            "Enable MFA"
+        ],
+
+        "Brute Force": [
+            "Block attacking IP",
+            "Enable account lockout",
+            "Enforce MFA"
+        ],
+
+        "Ransomware": [
+            "Isolate infected host",
+            "Disconnect network access",
+            "Restore from backup"
+        ],
+
+        "Web Exploitation": [
+            "Patch vulnerable application",
+            "Review web server logs",
+            "Block malicious requests"
+        ]
+    }
+
+    return recommendations.get(
+        attack,
+        ["No recommendations available"]
+    )
