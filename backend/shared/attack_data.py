@@ -46,5 +46,14 @@ attacks = {
         "Repeated password attempts detected",
         "Authentication anomaly observed"
     ]
+},
+    "Privilege Escalation": {
+    "mitre": "T1068",
+    "risk": 65,
+    "logs": [
+        "Unauthorized privilege request",
+        "Admin token abuse detected",
+        "Local privilege escalation observed"
+    ]
 }
 }
