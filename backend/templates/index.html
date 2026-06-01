@@ -415,11 +415,26 @@ async function launchAttack() {
     const data =
         await response.json();
 
-    alert(
-        `Attack Launched\n\n` +
-        `Selected: ${data.selected_attack}\n` +
-        `Detected: ${data.detected_attack}`
-    );
+    await loadHistory();
+
+    document.getElementById("incident-id").textContent =
+        data.incident_id;
+
+    document.getElementById("attack").textContent =
+        data.attack;
+
+    document.getElementById("severity").textContent =
+        data.severity;
+
+    document.getElementById("mitre").textContent =
+        data.mitre;
+
+    document.getElementById("risk-score").textContent =
+        data.risk_score;
+
+    document.getElementById("target-asset").textContent =
+        data.target_asset;
+}
 }
     function searchHistory() {
 
