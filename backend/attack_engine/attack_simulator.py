@@ -36,6 +36,24 @@ attacks = {
             "Webshell upload attempt",
             "Unauthorized admin access"
         ]
+    },
+
+    "Password Spray": {
+        "mitre": "T1110.003",
+        "logs": [
+            "Multiple accounts targeted",
+            "Repeated password attempts detected",
+            "Authentication anomaly observed"
+        ]
+    },
+
+    "Privilege Escalation": {
+        "mitre": "T1068",
+        "logs": [
+            "Unauthorized privilege request",
+            "Admin token abuse detected",
+            "Local privilege escalation observed"
+        ]
     }
 }
 
