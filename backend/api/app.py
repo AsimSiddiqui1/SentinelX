@@ -64,9 +64,15 @@ def launch_attack(attack_type: str):
         result["logs"]
     )
 
-    print("Detected:", detected_attack)
+print("Detected:", detected_attack)
 
-    data = attacks[detected_attack]
+if detected_attack == "Unknown":
+    return {
+        "error": "Unknown attack",
+        "logs": result["logs"]
+    }
+
+data = attacks[detected_attack]
 
     target = random.choice(assets)
 
