@@ -39,14 +39,17 @@ attacks = {
     }
 }
 
-attack = random.choice(list(attacks.keys()))
+def simulate_attack(attack_type):
 
-print("\n===== SentinelX Attack Simulator =====")
-print(f"Time: {datetime.now()}")
-print(f"Attack: {attack}")
-print(f"MITRE: {attacks[attack]['mitre']}")
+    if attack_type not in attacks:
+        return {
+            "attack": "Unknown",
+            "mitre": "N/A",
+            "logs": ["Unknown security event"]
+        }
 
-print("\nGenerated Logs:")
-
-for log in attacks[attack]["logs"]:
-    print(f"[LOG] {log}")
+    return {
+        "attack": attack_type,
+        "mitre": attacks[attack_type]["mitre"],
+        "logs": attacks[attack_type]["logs"]
+    }
