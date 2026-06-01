@@ -54,11 +54,17 @@ def simulate():
 @app.get("/launch/{attack_type}")
 def launch_attack(attack_type: str):
 
+    print("Selected:", attack_type)
+
     result = simulate_attack(attack_type)
+
+    print("Result:", result)
 
     detected_attack = detect_attack(
         result["logs"]
     )
+
+    print("Detected:", detected_attack)
 
     data = attacks[detected_attack]
 
