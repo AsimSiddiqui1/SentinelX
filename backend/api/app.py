@@ -54,25 +54,22 @@ def simulate():
 @app.get("/launch/{attack_type}")
 def launch_attack(attack_type: str):
 
-    logs = simulate_attack(attack_type)
+    result = simulate_attack(attack_type)
 
-    detected_attack = detect_attack(logs)
+    detected_attack = detect_attack(
+        result["logs"]
+    )
 
     return {
         "selected_attack": attack_type,
         "detected_attack": detected_attack,
-        "logs": logs
+        "logs": result["logs"]
     }
 @app.get("/incident")
 def incident():
 
-    attack = "Phishing"
-
-    logs = simulate_attack(attack)
-
-    detected_attack = detect_attack(logs)
-
-    data = attacks[detected_attack]
+    attack = random.choice(list(attacks.keys()))
+    data = attacks[attack]
 
     target = random.choice(assets)
 
@@ -83,15 +80,14 @@ def incident():
         target["criticality"]
     )
 
-
     timeline = generate_timeline()
 
     incident_history.append({
-    "incident_id": incident_id,
-    "attack": attack,
-    "severity": severity,
-    "asset": target["id"]
-})
+        "incident_id": incident_id,
+        "attack": attack,
+        "severity": severity,
+        "asset": target["id"]
+    })
 
     return {
         "incident_id": incident_id,
@@ -100,7 +96,7 @@ def incident():
         "severity": severity,
         "risk_score": data["risk"],
         "target_asset": target["id"],
-        "logs": logs,
+        "logs": data["logs"],
         "timeline": timeline
     }
 
