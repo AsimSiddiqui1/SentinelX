@@ -119,6 +119,8 @@ th, td {
 }
 
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
 </head>
 
@@ -157,8 +159,15 @@ th, td {
         <p id="low-count">0</p>
     </div>
 
-</div>
 
+</div>
+    <div class="card">
+
+    <h2>Severity Distribution</h2>
+
+    <canvas id="severityChart" height="120"></canvas>
+
+</div>
     <div class="card">
 
         <h2>Incident Details</h2>
@@ -210,6 +219,8 @@ th, td {
 
 <script>
 
+let severityChart = null;
+    
 async function loadIncident() {
 
     const response =
@@ -297,33 +308,48 @@ async function loadHistory() {
             <td>${item.asset}</td>
         </tr>
         `;
-
     });
 
-    document.getElementById("history-table").innerHTML =
-        html;
+    document.getElementById("history-table").innerHTML = html;
 
-    document.getElementById("total-incidents").textContent =
-        data.length;
+    document.getElementById("total-incidents").textContent = data.length;
+    document.getElementById("critical-count").textContent = critical;
+    document.getElementById("high-count").textContent = high;
+    document.getElementById("medium-count").textContent = medium;
+    document.getElementById("low-count").textContent = low;
 
-    document.getElementById("critical-count").textContent =
-        critical;
+    const ctx = document.getElementById("severityChart");
 
-    document.getElementById("high-count").textContent =
-        high;
-
-    document.getElementById("medium-count").textContent =
-        medium;
-
-    const lowElement =
-        document.getElementById("low-count");
-
-    if (lowElement) {
-        lowElement.textContent = low;
+    if (severityChart) {
+        severityChart.destroy();
     }
-}
 
-window.onload = loadHistory;
+    severityChart = new Chart(ctx, {
+        type: "pie",
+        data: {
+            labels: [
+                "Critical",
+                "High",
+                "Medium",
+                "Low"
+            ],
+            datasets: [{
+                data: [
+                    critical,
+                    high,
+                    medium,
+                    low
+                ],
+                backgroundColor: [
+                    "#dc2626",
+                    "#ea580c",
+                    "#ca8a04",
+                    "#16a34a"
+                ]
+            }]
+        }
+    });
+}
 
 </script>
 </body>
