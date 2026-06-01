@@ -17,6 +17,12 @@ def detect_attack(logs):
     elif "sql injection" in text:
         return "Web Exploitation"
 
+    elif "multiple accounts targeted" in text:
+        return "Password Spray"
+
+    elif "privilege escalation" in text:
+        return "Privilege Escalation"
+
     return "Unknown"
 
 
@@ -59,6 +65,18 @@ def get_recommendations(attack):
             "Isolate infected host",
             "Disconnect network access",
             "Restore from backup"
+        ],
+
+        "Password Spray": [
+            "Force password reset",
+            "Enable MFA",
+            "Monitor authentication logs"
+        ],
+        
+        "Privilege Escalation": [
+            "Review admin permissions",
+            "Patch vulnerable systems",
+            "Investigate compromised accounts"
         ],
 
         "Web Exploitation": [
