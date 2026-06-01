@@ -81,27 +81,27 @@ incident_id = generate_incident_id()
 severity = calculate_severity(
     data["risk"],
     target["criticality"]
-    )
+)
 
-    timeline = generate_timeline()
+timeline = generate_timeline()
 
-    incident_history.append({
-        "incident_id": incident_id,
-        "attack": detected_attack,
-        "severity": severity,
-        "asset": target["id"]
-    })
+incident_history.append({
+    "incident_id": incident_id,
+    "attack": detected_attack,
+    "severity": severity,
+    "asset": target["id"]
+})
 
-    return {
-        "incident_id": incident_id,
-        "attack": detected_attack,
-        "mitre": data["mitre"],
-        "severity": severity,
-        "risk_score": data["risk"],
-        "target_asset": target["id"],
-        "logs": result["logs"],
-        "timeline": timeline
-    }
+return {
+    "incident_id": incident_id,
+    "attack": detected_attack,
+    "mitre": data["mitre"],
+    "severity": severity,
+    "risk_score": data["risk"],
+    "target_asset": target["id"],
+    "logs": result["logs"],
+    "timeline": timeline
+}
 @app.get("/incident")
 def incident():
 
