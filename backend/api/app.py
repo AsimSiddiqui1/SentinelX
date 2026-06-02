@@ -81,7 +81,65 @@ def launch_attack(attack_type: str):
         target["criticality"]
     )
 
-    timeline = generate_timeline()
+   timeline = generate_timeline()
+
+ai_analysis = {
+
+    "Phishing": {
+        "summary": "Credential harvesting activity detected.",
+        "recommendations": [
+            "Reset affected credentials",
+            "Enable MFA",
+            "Block phishing domain"
+        ]
+    },
+
+    "Ransomware": {
+        "summary": "Mass encryption activity detected.",
+        "recommendations": [
+            "Isolate infected host",
+            "Restore from backup",
+            "Disconnect network access"
+        ]
+    },
+
+    "Brute Force": {
+        "summary": "Multiple failed login attempts detected.",
+        "recommendations": [
+            "Block attacking IP",
+            "Enable account lockout",
+            "Enforce MFA"
+        ]
+    },
+
+    "Web Exploitation": {
+        "summary": "Web application attack activity detected.",
+        "recommendations": [
+            "Patch vulnerable application",
+            "Review web logs",
+            "Block malicious requests"
+        ]
+    },
+
+    "Password Spray": {
+        "summary": "Password spraying behavior detected.",
+        "recommendations": [
+            "Force password reset",
+            "Enable MFA",
+            "Monitor authentication logs"
+        ]
+    },
+
+    "Privilege Escalation": {
+        "summary": "Unauthorized privilege escalation detected.",
+        "recommendations": [
+            "Review privileged accounts",
+            "Revoke suspicious permissions",
+            "Investigate affected host"
+        ]
+    }
+}
+
 
     incident_history.append({
         "incident_id": incident_id,
@@ -98,7 +156,11 @@ def launch_attack(attack_type: str):
         "risk_score": data["risk"],
         "target_asset": target["id"],
         "logs": result["logs"],
-        "timeline": timeline
+        "timeline": timeline,
+        "ai_summary":
+        ai_analysis[detected_attack]["summary"],
+        "recommendations":
+        ai_analysis[detected_attack]["recommendations"]
     }
 @app.get("/incident")
 def incident():
