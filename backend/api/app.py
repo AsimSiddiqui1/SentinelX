@@ -140,14 +140,14 @@ ai_analysis = {
     }
 }
 
-incident_history.append({
+    incident_history.append({
         "incident_id": incident_id,
         "attack": detected_attack,
         "severity": severity,
         "asset": target["id"]
     })
 
-return {
+    return {
         "incident_id": incident_id,
         "attack": detected_attack,
         "mitre": data["mitre"],
@@ -157,10 +157,12 @@ return {
         "logs": result["logs"],
         "timeline": timeline,
         "ai_summary":
-        ai_analysis[detected_attack]["summary"],
+            ai_analysis[detected_attack]["summary"],
         "recommendations":
-        ai_analysis[detected_attack]["recommendations"]
+            ai_analysis[detected_attack]["recommendations"]
     }
+
+                   
 @app.get("/incident")
 def incident():
 
