@@ -81,6 +81,15 @@ def launch_attack(attack_type: str):
         target["criticality"]
     )
 
+    confidence = random.randint(85, 99)
+    if severity == "Critical":
+    verdict = "Malicious"
+elif severity == "High":
+    verdict = "Suspicious"
+
+else:
+    verdict = "Under Investigation"
+
     timeline = generate_timeline()
 
     ai_analysis = {
