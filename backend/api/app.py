@@ -9,6 +9,20 @@ from backend.shared.timeline import generate_timeline
 from fastapi import FastAPI
 import random
 
+ips = [
+    "185.44.23.11",
+    "103.25.88.42",
+    "91.204.56.18",
+    "45.77.192.101"
+]
+
+domains = [
+    "secure-update-login.com",
+    "office365-security.net",
+    "verify-account-now.org",
+    "login-auth-check.com"
+]
+
 from backend.shared.attack_data import attacks
 from backend.database.assets import assets
 
