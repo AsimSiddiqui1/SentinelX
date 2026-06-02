@@ -129,6 +129,10 @@ th, td {
     font-size: 18px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
 }
+.card p {
+    font-size: 18px;
+    margin: 12px 0;
+}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -468,8 +472,17 @@ async function launchAttack() {
     document.getElementById("mitre").textContent =
         data.mitre;
 
-    document.getElementById("risk").textContent =
-        data.risk_score;
+    let riskColor = "lime";
+    
+    if(data.risk_score >= 90)
+        riskColor = "red";
+    else if(data.risk_score >= 80)
+        riskColor = "orange";
+    else if(data.risk_score >= 60)
+        riskColor = "gold";
+    
+    document.getElementById("risk").innerHTML =
+        `<span style="color:${riskColor}">${data.risk_score}</span>`;
 
     document.getElementById("target").textContent =
         data.target_asset;
