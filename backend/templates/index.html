@@ -522,6 +522,18 @@ async function launchAttack() {
     document.getElementById("target").textContent =
         data.target_asset;
     
+    document.getElementById("ai-summary").textContent =
+    data.ai_summary;
+
+const recommendations =
+    document.getElementById("ai-recommendations");
+
+recommendations.innerHTML = "";
+
+data.recommendations.forEach(rec => {
+    recommendations.innerHTML +=
+        `<li>${rec}</li>`;
+});
     document.getElementById("logs").innerHTML = "";
     data.logs.forEach(log => {
         document.getElementById("logs").innerHTML +=
