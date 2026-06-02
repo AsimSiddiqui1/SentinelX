@@ -140,7 +140,7 @@ ai_analysis = {
     }
 }
 
-    incident_history.append({
+incident_history.append({
         "incident_id": incident_id,
         "attack": detected_attack,
         "severity": severity,
