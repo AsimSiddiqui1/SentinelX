@@ -80,8 +80,8 @@ def launch_attack(attack_type: str):
         data["risk"],
         target["criticality"]
     )
-
-   timeline = generate_timeline()
+    
+    timeline = generate_timeline()
 
 ai_analysis = {
 
