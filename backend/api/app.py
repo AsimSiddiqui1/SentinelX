@@ -1,3 +1,4 @@
+from backend.report_generator import generate_pdf_report
 from backend.attack_engine.attack_simulator import simulate_attack
 from backend.ai_defender.ai_defender import detect_attack
 from backend.database.incident_history import incident_history
