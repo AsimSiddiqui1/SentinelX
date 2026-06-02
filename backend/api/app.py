@@ -80,67 +80,67 @@ def launch_attack(attack_type: str):
         data["risk"],
         target["criticality"]
     )
-    
+
     timeline = generate_timeline()
 
-ai_analysis = {
+    ai_analysis = {
 
-    "Phishing": {
-        "summary": "Credential harvesting activity detected.",
-        "recommendations": [
-            "Reset affected credentials",
-            "Enable MFA",
-            "Block phishing domain"
-        ]
-    },
+        "Phishing": {
+            "summary": "Credential harvesting activity detected.",
+            "recommendations": [
+                "Reset affected credentials",
+                "Enable MFA",
+                "Block phishing domain"
+            ]
+        },
 
-    "Ransomware": {
-        "summary": "Mass encryption activity detected.",
-        "recommendations": [
-            "Isolate infected host",
-            "Restore from backup",
-            "Disconnect network access"
-        ]
-    },
+        "Ransomware": {
+            "summary": "Mass encryption activity detected.",
+            "recommendations": [
+                "Isolate infected host",
+                "Restore from backup",
+                "Disconnect network access"
+            ]
+        },
 
-    "Brute Force": {
-        "summary": "Multiple failed login attempts detected.",
-        "recommendations": [
-            "Block attacking IP",
-            "Enable account lockout",
-            "Enforce MFA"
-        ]
-    },
+        "Brute Force": {
+            "summary": "Multiple failed login attempts detected.",
+            "recommendations": [
+                "Block attacking IP",
+                "Enable account lockout",
+                "Enforce MFA"
+            ]
+        },
 
-    "Web Exploitation": {
-        "summary": "Web application attack activity detected.",
-        "recommendations": [
-            "Patch vulnerable application",
-            "Review web logs",
-            "Block malicious requests"
-        ]
-    },
+        "Web Exploitation": {
+            "summary": "Web application attack activity detected.",
+            "recommendations": [
+                "Patch vulnerable application",
+                "Review web logs",
+                "Block malicious requests"
+            ]
+        },
 
-    "Password Spray": {
-        "summary": "Password spraying behavior detected.",
-        "recommendations": [
-            "Force password reset",
-            "Enable MFA",
-            "Monitor authentication logs"
-        ]
-    },
+        "Password Spray": {
+            "summary": "Password spraying behavior detected.",
+            "recommendations": [
+                "Force password reset",
+                "Enable MFA",
+                "Monitor authentication logs"
+            ]
+        },
 
-    "Privilege Escalation": {
-        "summary": "Unauthorized privilege escalation detected.",
-        "recommendations": [
-            "Review privileged accounts",
-            "Revoke suspicious permissions",
-            "Investigate affected host"
-        ]
+        "Privilege Escalation": {
+            "summary": "Unauthorized privilege escalation detected.",
+            "recommendations": [
+                "Review privileged accounts",
+                "Revoke suspicious permissions",
+                "Investigate affected host"
+            ]
+        }
     }
-}
 
-incident_history.append({
+    incident_history.append({
         "incident_id": incident_id,
         "attack": detected_attack,
         "severity": severity,
@@ -156,13 +156,9 @@ incident_history.append({
         "target_asset": target["id"],
         "logs": result["logs"],
         "timeline": timeline,
-        "ai_summary":
-            ai_analysis[detected_attack]["summary"],
-        "recommendations":
-            ai_analysis[detected_attack]["recommendations"]
+        "ai_summary": ai_analysis[detected_attack]["summary"],
+        "recommendations": ai_analysis[detected_attack]["recommendations"]
     }
-
-                   
 @app.get("/incident")
 def incident():
 
