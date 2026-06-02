@@ -349,7 +349,7 @@ async function loadHistory() {
     let medium = 0;
     let low = 0;
 
-    data.forEach(item => {
+    data.reverse().forEach(item => {
 
         if(item.severity === "Critical") critical++;
         if(item.severity === "High") high++;
