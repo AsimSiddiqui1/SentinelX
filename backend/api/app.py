@@ -233,3 +233,26 @@ def incident():
 @app.get("/history")
 def history():
     return incident_history
+
+@app.get("/report")
+def report():
+
+    if not incident_history:
+        return {
+            "error": "No incidents available"
+        }
+
+    latest = incident_history[-1]
+
+    filename = "incident_report.pdf"
+
+    generate_pdf_report(
+        latest,
+        filename
+    )
+
+    return FileResponse(
+        filename,
+        media_type="application/pdf",
+        filename=filename
+    )
