@@ -82,7 +82,7 @@ def launch_attack(attack_type: str):
     )
 
     confidence = random.randint(85, 99)
-    if severity == "Critical":
+if severity == "Critical":
     verdict = "Malicious"
 elif severity == "High":
     verdict = "Suspicious"
