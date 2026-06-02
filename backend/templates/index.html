@@ -198,6 +198,17 @@ th, td {
     </div>
 
 </div>
+
+    <div class="card">
+
+    <h2>🚨 SOC Alerts</h2>
+
+    <ul id="alerts-list">
+        <li>No alerts yet</li>
+    </ul>
+
+</div>
+    
     <div class="card">
 
         <h2>Incident Details</h2>
@@ -331,6 +342,7 @@ async function loadHistory() {
         await response.json();
 
     let html = "";
+    let alertsHTML = "";
 
     let critical = 0;
     let high = 0;
@@ -343,6 +355,16 @@ async function loadHistory() {
         if(item.severity === "High") high++;
         if(item.severity === "Medium") medium++;
         if(item.severity === "Low") low++;
+        let icon = "🟢";
+        if(item.severity === "Critical") icon = "🔴";
+        else if(item.severity === "High") icon = "🟠";
+        else if(item.severity === "Medium") icon = "🟡";
+        
+        alertsHTML += `
+        <li>
+        ${icon} ${item.attack} detected on ${item.asset}
+        </li>
+        `;
 
         html += `
         <tr>
@@ -355,6 +377,8 @@ async function loadHistory() {
     });
 
     document.getElementById("history-table").innerHTML = html;
+    document.getElementById("alerts-list").innerHTML =
+    alertsHTML || "<li>No alerts yet</li>";
 
     document.getElementById("total-incidents").textContent = data.length;
     document.getElementById("critical-count").textContent = critical;
