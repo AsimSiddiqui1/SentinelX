@@ -133,6 +133,15 @@ th, td {
     font-size: 18px;
     margin: 12px 0;
 }
+#incident,
+#attack,
+#severity,
+#mitre,
+#risk,
+#target {
+    font-weight: bold;
+    font-size: 20px;
+}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -298,9 +307,9 @@ async function loadIncident() {
 
     document.getElementById("attack").textContent =
         data.attack;
-
-    document.getElementById("mitre").textContent =
-        data.mitre;
+    
+    document.getElementById("mitre").innerHTML =
+        `<span style="color:#4da6ff">${data.mitre}</span>`;
 
     document.getElementById("risk").textContent =
         data.risk_score;
