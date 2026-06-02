@@ -288,19 +288,19 @@ th, td {
     </ul>
     </div>
 
-    <div class="card">
+   <div class="card">
+       <h2>🌐 Threat Intelligence</h2>
 
-    <h2>🌐 Threat Intelligence</h2>
-
-    <p><b>Suspicious IP:</b>
-        <span id="ioc-ip">-</span>
-    </p>
-
-    <p><b>Malicious Domain:</b>
-        <span id="ioc-domain">-</span>
-    </p>
-
-    </div>
+       <p><b>Suspicious IP:</b>
+           <span id="ioc-ip">-</span>
+       </p>
+       <p><b>Malicious Domain:</b>
+           <span id="ioc-domain">-</span>
+       </p>
+       <p><b>Threat Level:</b>
+           <span id="threat-level">-</span>
+       </p>
+   </div>
 
     <div class="card">
 
@@ -574,8 +574,19 @@ async function launchAttack() {
     document.getElementById("ioc-domain").textContent =
     data.ioc_domain;
 
-const recommendations =
-    document.getElementById("ai-recommendations");
+    let threat = "Low";
+    
+    if(data.risk_score >= 90)
+        threat = "Critical";
+    else if(data.risk_score >= 80)
+        threat = "High";
+    else if(data.risk_score >= 60)
+        threat = "Medium";
+    document.getElementById("threat-level").textContent =
+        threat;
+    
+    const recommendations =
+        document.getElementById("ai-recommendations");
 
 recommendations.innerHTML = "";
 
