@@ -290,6 +290,20 @@ th, td {
 
     <div class="card">
 
+    <h2>🌐 Threat Intelligence</h2>
+
+    <p><b>Suspicious IP:</b>
+        <span id="ioc-ip">-</span>
+    </p>
+
+    <p><b>Malicious Domain:</b>
+        <span id="ioc-domain">-</span>
+    </p>
+
+    </div>
+
+    <div class="card">
+
           <h2>Incident History</h2>
 
     <input
@@ -553,6 +567,12 @@ async function launchAttack() {
 
     document.getElementById("business-impact").textContent =
     data.business_impact;
+
+    document.getElementById("ioc-ip").textContent =
+    data.ioc_ip;
+
+    document.getElementById("ioc-domain").textContent =
+    data.ioc_domain;
 
 const recommendations =
     document.getElementById("ai-recommendations");
