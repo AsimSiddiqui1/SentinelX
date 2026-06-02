@@ -455,9 +455,15 @@ async function launchAttack() {
 
     document.getElementById("attack").textContent =
         data.attack;
-
-    document.getElementById("severity").textContent =
-        data.severity;
+    
+    if(data.severity === "Critical")
+        document.getElementById("severity").innerHTML = "🔴 Critical";
+    else if(data.severity === "High")
+        document.getElementById("severity").innerHTML = "🟠 High";
+    else if(data.severity === "Medium")
+        document.getElementById("severity").innerHTML = "🟡 Medium";
+    else
+        document.getElementById("severity").innerHTML = "🟢 Low";
 
     document.getElementById("mitre").textContent =
         data.mitre;
@@ -467,6 +473,17 @@ async function launchAttack() {
 
     document.getElementById("target").textContent =
         data.target_asset;
+    
+    document.getElementById("logs").innerHTML = "";
+    data.logs.forEach(log => {
+        document.getElementById("logs").innerHTML +=
+            `<li>${log}</li>`;
+});
+    document.getElementById("timeline").innerHTML = "";
+    data.timeline.forEach(event => {
+        document.getElementById("timeline").innerHTML +=
+            `<li>${event}</li>`;
+});
 }
 
     function searchHistory() {
