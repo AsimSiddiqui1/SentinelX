@@ -93,8 +93,9 @@ def launch_attack(attack_type: str):
 
     ai_analysis = {
 
-        "Phishing": {
+       "Phishing": {
             "summary": "Credential harvesting activity detected.",
+            "impact": "User credentials may be compromised, allowing attackers to access internal systems and sensitive data.",
             "recommendations": [
                 "Reset affected credentials",
                 "Enable MFA",
@@ -104,6 +105,7 @@ def launch_attack(attack_type: str):
 
         "Ransomware": {
             "summary": "Mass encryption activity detected.",
+            "impact": "Business operations may be disrupted due to encrypted files and unavailable systems.",
             "recommendations": [
                 "Isolate infected host",
                 "Restore from backup",
@@ -113,6 +115,7 @@ def launch_attack(attack_type: str):
 
         "Brute Force": {
             "summary": "Multiple failed login attempts detected.",
+            "impact": "Repeated authentication attempts may indicate an attempt to gain unauthorized access.",
             "recommendations": [
                 "Block attacking IP",
                 "Enable account lockout",
@@ -122,6 +125,7 @@ def launch_attack(attack_type: str):
 
         "Web Exploitation": {
             "summary": "Web application attack activity detected.",
+            "impact": "Attackers may exploit vulnerabilities to gain access to web applications and backend systems.",
             "recommendations": [
                 "Patch vulnerable application",
                 "Review web logs",
@@ -131,6 +135,7 @@ def launch_attack(attack_type: str):
 
         "Password Spray": {
             "summary": "Password spraying behavior detected.",
+            "impact": "This attack targeted employee authentication systems. Successful compromise could lead to unauthorized access to internal resources.",
             "recommendations": [
                 "Force password reset",
                 "Enable MFA",
@@ -140,12 +145,13 @@ def launch_attack(attack_type: str):
 
         "Privilege Escalation": {
             "summary": "Unauthorized privilege escalation detected.",
+            "impact": "An attacker may gain administrative access and control critical systems.",
             "recommendations": [
                 "Review privileged accounts",
                 "Revoke suspicious permissions",
                 "Investigate affected host"
             ]
-        }
+        },
     }
 
     incident_history.append({
@@ -165,6 +171,7 @@ def launch_attack(attack_type: str):
         "logs": result["logs"],
         "timeline": timeline,
         "ai_summary": ai_analysis[detected_attack]["summary"],
+        "business_impact": ai_analysis[detected_attack]["impact"],
         "recommendations": ai_analysis[detected_attack]["recommendations"],
         "confidence": confidence,
         "verdict": verdict,
