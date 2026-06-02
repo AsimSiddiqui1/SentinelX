@@ -104,6 +104,8 @@ def launch_attack(attack_type: str):
         verdict = "Under Investigation"
 
     timeline = generate_timeline()
+    ioc_ip = random.choice(ips)
+    ioc_domain = random.choice(domains)
 
     ai_analysis = {
 
@@ -184,6 +186,8 @@ def launch_attack(attack_type: str):
         "target_asset": target["id"],
         "logs": result["logs"],
         "timeline": timeline,
+        "ioc_ip": ioc_ip,
+        "ioc_domain": ioc_domain,
         "ai_summary": ai_analysis[detected_attack]["summary"],
         "business_impact": ai_analysis[detected_attack]["impact"],
         "recommendations": ai_analysis[detected_attack]["recommendations"],
