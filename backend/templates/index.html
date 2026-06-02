@@ -255,7 +255,7 @@ th, td {
 
         <p><b>Risk Score:</b> <span id="risk">-</span></p>
 
-        <p><b>AI Confidence:</b> <span id=>-</span></p>
+        <p><b>AI Confidence:</b> <span id="confidence">-</span></p>
         
         <p><b>SOC Verdict:</b> <span id="verdict">-</span></p>
 
@@ -526,7 +526,7 @@ async function launchAttack() {
     document.getElementById("target").textContent =
         data.target_asset;
 
-    document.getElementById().innerHTML =
+    document.getElementById("confidence").innerHTML =
     `🤖 ${data.confidence}%`;
     
     if(data.verdict === "Malicious")
