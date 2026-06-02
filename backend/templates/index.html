@@ -123,6 +123,12 @@ th, td {
     max-height: 500px;
     margin: auto;
 }
+
+.alert-item {
+    padding: 8px 0;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -203,10 +209,9 @@ th, td {
 
     <h2>🚨 SOC Alerts</h2>
 
-    <ul id="alerts-list">
-        <li>No alerts yet</li>
-    </ul>
-
+    <div id="alerts-list">
+    No alerts yet
+   </div>
 </div>
     
     <div class="card">
@@ -360,11 +365,11 @@ async function loadHistory() {
         else if(item.severity === "High") icon = "🟠";
         else if(item.severity === "Medium") icon = "🟡";
         
-        alertsHTML += `
-        <li>
-        ${icon} ${item.attack} detected on ${item.asset}
-        </li>
-        `;
+       alertsHTML += `
+       <div class="alert-item">
+       ${icon} ${item.attack} detected on ${item.asset}
+</div>
+`;
 
         html += `
         <tr>
