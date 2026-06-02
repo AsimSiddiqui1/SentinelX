@@ -82,13 +82,12 @@ def launch_attack(attack_type: str):
     )
 
     confidence = random.randint(85, 99)
-if severity == "Critical":
-    verdict = "Malicious"
-elif severity == "High":
-    verdict = "Suspicious"
-
-else:
-    verdict = "Under Investigation"
+    if severity == "Critical":
+        verdict = "Malicious"
+    elif severity == "High":
+        verdict = "Suspicious"
+    else:
+        verdict = "Under Investigation"
 
     timeline = generate_timeline()
 
@@ -166,7 +165,9 @@ else:
         "logs": result["logs"],
         "timeline": timeline,
         "ai_summary": ai_analysis[detected_attack]["summary"],
-        "recommendations": ai_analysis[detected_attack]["recommendations"]
+        "recommendations": ai_analysis[detected_attack]["recommendations"],
+        "confidence": confidence,
+        "verdict": verdict,
     }
 @app.get("/incident")
 def incident():
