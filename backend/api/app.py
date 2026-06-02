@@ -147,7 +147,7 @@ incident_history.append({
         "asset": target["id"]
     })
 
-    return {
+return {
         "incident_id": incident_id,
         "attack": detected_attack,
         "mitre": data["mitre"],
