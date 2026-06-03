@@ -197,6 +197,8 @@ def launch_attack(attack_type: str):
         "attack": detected_attack,
         "severity": severity,
         "asset": target["id"]
+        "mitre": data["mitre"],
+        "risk_score": data["risk"]
     })
 
     return {
