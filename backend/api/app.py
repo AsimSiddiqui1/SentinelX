@@ -106,9 +106,26 @@ def launch_attack(attack_type: str):
         verdict = "Under Investigation"
 
     timeline = generate_timeline()
-    llm_analysis = analyze_incident(
-    result["logs"]
-    )
+    try:
+        llm_analysis = analyze_incident(
+            result["logs"]
+        )
+    except Exception:
+        llm_analysis = """
+        Summary:
+        AI quota exceeded.
+        Business Impact:
+        Analysis unavailable.
+        Recommendations:
+        - Retry later
+        - Check Gemini quota
+        - Use fallback analysis
+        
+        Confidence:
+        N/A
+        Verdict:
+        Under Investigation
+        """
     ioc_ip = random.choice(ips)
     ioc_domain = random.choice(domains)
 
