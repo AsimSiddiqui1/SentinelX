@@ -179,6 +179,53 @@ def generate_pdf_report(data, filename, incident_history):
     
     content.append(Spacer(1, 20))
 
+    mitre_id = data.get("mitre", "N/A")
+
+    technique_name = "Unknown"
+    tactic = "Unknown"
+    
+    if mitre_id == "T1566":
+        technique_name = "Phishing"
+        tactic = "Initial Access"
+    
+    elif mitre_id == "T1110":
+        technique_name = "Brute Force"
+        tactic = "Credential Access"
+    
+    elif mitre_id == "T1486":
+        technique_name = "Data Encrypted for Impact"
+        tactic = "Impact"
+    
+    content.append(
+        Paragraph(
+            "MITRE ATT&CK Mapping",
+            styles["Heading1"]
+        )
+    )
+    
+    content.append(
+        Paragraph(
+            f"Technique ID: {mitre_id}",
+            styles["Normal"]
+        )
+    )
+    
+    content.append(
+        Paragraph(
+            f"Technique Name: {technique_name}",
+            styles["Normal"]
+        )
+    )
+    
+    content.append(
+        Paragraph(
+            f"Tactic: {tactic}",
+            styles["Normal"]
+        )
+    )
+    
+    content.append(Spacer(1, 20))
+
     # Threat Intelligence
     content.append(
         Paragraph("Threat Intelligence", styles["Heading1"])
