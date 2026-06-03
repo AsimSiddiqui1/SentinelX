@@ -151,6 +151,34 @@ def generate_pdf_report(data, filename, incident_history):
 
     content.append(Spacer(1, 20))
 
+    content.append(Spacer(1, 20))
+
+    content.append(
+        Paragraph(
+            "Executive Summary",
+            styles["Heading1"]
+        )
+    )
+    
+    content.append(
+        Paragraph(
+            f"""
+            A {data.get('severity','N/A')} severity
+            {data.get('attack','N/A')} incident was detected
+            against {data.get('asset','N/A')}.
+    
+            Risk Score:
+            {data.get('risk_score','N/A')}/100
+    
+            Immediate investigation and containment
+            actions are recommended.
+            """,
+            styles["Normal"]
+        )
+    )
+    
+    content.append(Spacer(1, 20))
+
     # Threat Intelligence
     content.append(
         Paragraph("Threat Intelligence", styles["Heading1"])
