@@ -8,25 +8,8 @@ model = genai.GenerativeModel(
     "models/gemini-2.5-computer-use-preview-10-2025"
 )
 
+response = model.generate_content(
+    "Say hello in one sentence."
+)
 
-def analyze_incident(logs):
-
-    prompt = f"""
-You are a SOC Analyst.
-
-Analyze these security logs:
-
-{logs}
-
-Provide:
-
-1. Incident Summary
-2. Business Impact
-3. Recommendations
-4. Confidence Score (0-100)
-5. Verdict (Malicious, Suspicious, Under Investigation)
-"""
-
-    response = model.generate_content(prompt)
-
-    return response.text
+print(response.text)
