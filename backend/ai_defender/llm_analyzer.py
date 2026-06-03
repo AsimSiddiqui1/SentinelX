@@ -49,20 +49,20 @@ Keep the entire response under 120 words.
 
         return response.text
 
-    except Exception as e:
-        print("Gemini Error:", e)
+except Exception as e:
+    print("Gemini Error:", e)
 
-        return f"""
+    return """
 Summary:
-AI analysis unavailable.
+AI quota exhausted.
 
 Business Impact:
-{str(e)}
+Real-time AI analysis is temporarily unavailable.
 
 Recommendations:
 - Review logs manually
-- Check API quota
-- Retry later
+- Retry after quota reset
+- Enable billing for continuous AI analysis
 
 Confidence:
 N/A
