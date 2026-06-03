@@ -285,7 +285,8 @@ def report():
 
     generate_pdf_report(
         latest,
-        filename
+        filename,
+        incident_history
     )
 
     return FileResponse(
