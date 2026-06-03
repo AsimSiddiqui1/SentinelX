@@ -217,7 +217,7 @@ def generate_pdf_report(data, filename, incident_history):
         
     content.append(
         Paragraph(
-            "MITRE ATTACK MAPPING TEST",
+            "MITRE ATT&CK Mapping",
             styles["Heading1"]
         )
     )
