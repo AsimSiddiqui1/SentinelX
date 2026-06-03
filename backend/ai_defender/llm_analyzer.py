@@ -7,35 +7,32 @@ client = genai.Client(api_key=API_KEY)
 
 def analyze_incident(logs):
 
-    prompt = f"""
-You are a Senior SOC Analyst.
+    try:
+        response = client.models.generate_content(
+            model="gemini-2.5-flash-lite",
+            contents=prompt
+        )
 
-Analyze these security logs:
+        return response.text
 
-{logs}
-
-Return ONLY this format:
-
+    except Exception:
+        return """
 Summary:
-(max 2 lines)
+AI analysis unavailable.
 
 Business Impact:
-(max 2 lines)
+Unable to generate analysis.
 
 Recommendations:
-- recommendation 1
-- recommendation 2
-- recommendation 3
+- Review logs manually
+- Check API quota
+- Retry later
 
 Confidence:
-XX%
+N/A
 
 Verdict:
-Malicious / Suspicious / Under Investigation
-
-Keep the entire response under 120 words.
-Do not explain your reasoning.
-Do not generate long reports.
+Under Investigation
 """
 
     response = client.models.generate_content(
