@@ -4,7 +4,9 @@ API_KEY = "AQ.Ab8RN6IKgWOjIBt6bMGzl-7bv76n4fL3UZXT4dmxHH-b7rtGLA"
 
 genai.configure(api_key=API_KEY)
 
-model = genai.GenerativeModel("gemini-2.5-flash-lite")
+model = genai.GenerativeModel(
+    "models/gemini-2.5-computer-use-preview-10-2025"
+)
 
 
 def analyze_incident(logs):
