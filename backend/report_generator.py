@@ -202,4 +202,27 @@ def generate_pdf_report(data, filename):
         )
     )
 
+    content.append(Spacer(1, 20))
+
+    content.append(
+        Paragraph(
+            "Security Analytics",
+            styles["Heading1"]
+        )
+    )
+    
+    content.append(
+        Paragraph(
+            f"Severity: {data.get('severity', 'N/A')}",
+            styles["Normal"]
+        )
+    )
+    
+    content.append(
+        Paragraph(
+            f"Risk Score: {data.get('risk_score', 'N/A')}",
+            styles["Normal"]
+        )
+    )
+
     pdf.build(content)
