@@ -414,7 +414,7 @@ def generate_pdf_report(data, filename, incident_history):
         )
     )
     
-     risk = int(data.get("risk_score", 0))
+    risk = int(data.get("risk_score", 0))
     
     if risk >= 80:
         risk_text = "CRITICAL RISK"
