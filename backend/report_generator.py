@@ -1,3 +1,4 @@
+from reportlab.platypus import Image
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 
@@ -9,6 +10,14 @@ def generate_pdf_report(data, filename):
     styles = getSampleStyleSheet()
 
     content = []
+    logo = Image(
+    "backend/assets/sentinelx_logo.png",
+    width=100,
+    height=100
+    )
+    
+    content.append(logo)
+    content.append(Spacer(1, 20))
 
     content.append(
         Paragraph("SentinelX Incident Report", styles["Title"])
