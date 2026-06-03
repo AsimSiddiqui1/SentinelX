@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+from reportlab.platypus import Image
 from reportlab.platypus import (
     SimpleDocTemplate,
     Paragraph,
