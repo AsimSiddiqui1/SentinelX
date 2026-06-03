@@ -110,7 +110,7 @@ def generate_pdf_report(data, filename, incident_history):
 
     # Executive Summary
     content.append(
-        Paragraph("Executive Summary", styles["Heading1"])
+        Paragraph("Incident Details", styles["Heading1"])
     )
 
     content.append(
