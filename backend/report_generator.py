@@ -61,7 +61,6 @@ def generate_pdf_report(data, filename, incident_history):
 
     pdf = SimpleDocTemplate(filename)
 
-    pdf = SimpleDocTemplate(filename)
 
     styles = getSampleStyleSheet()
 
@@ -268,17 +267,81 @@ def generate_pdf_report(data, filename, incident_history):
     )
 
     content.append(chart)
-        
+
+    content.append(Spacer(1, 10))
+
     content.append(
         Paragraph(
-            f"Severity: {data.get('severity', 'N/A')}",
+            "Dashboard Statistics",
+            styles["Heading2"]
+        )
+    )
+    
+    content.append(
+        Paragraph(
+            f"Critical Incidents: {critical}",
             styles["Normal"]
         )
     )
     
     content.append(
         Paragraph(
-            f"Risk Score: {data.get('risk_score', 'N/A')}",
+            f"High Incidents: {high}",
+            styles["Normal"]
+        )
+    )
+    
+    content.append(
+        Paragraph(
+            f"Medium Incidents: {medium}",
+            styles["Normal"]
+        )
+    )
+    
+    content.append(
+        Paragraph(
+            f"Low Incidents: {low}",
+            styles["Normal"]
+        )
+    )
+        
+    severity = data.get("severity", "N/A")
+    
+    if severity == "Critical":
+        severity_text = "🔴 CRITICAL"
+    
+    elif severity == "High":
+        severity_text = "🟠 HIGH"
+    
+    elif severity == "Medium":
+        severity_text = "🟡 MEDIUM"
+    
+    else:
+        severity_text = "🟢 LOW"
+    
+    content.append(
+        Paragraph(
+            f"Severity: {severity_text}",
+            styles["Normal"]
+        )
+    )
+    
+    risk = int(data.get("risk_score", 0))
+    
+    filled = int(risk / 5)
+    
+    risk_bar = "█" * filled + "░" * (20 - filled)
+    
+    content.append(
+        Paragraph(
+            f"Risk Score: {risk}",
+            styles["Normal"]
+        )
+    )
+    
+    content.append(
+        Paragraph(
+            f"Risk Meter: {risk_bar} {risk}/100",
             styles["Normal"]
         )
     )
