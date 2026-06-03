@@ -8,22 +8,46 @@ from reportlab.platypus import (
 from reportlab.lib.styles import getSampleStyleSheet
 
 
-def generate_pdf_report(data, filename):
+def generate_pdf_report(data, filename, incident_history):
 
-    severity_counts = {
-        "Critical": 1 if data.get("severity") == "Critical" else 0,
-        "High": 1 if data.get("severity") == "High" else 0,
-        "Medium": 1 if data.get("severity") == "Medium" else 0,
-        "Low": 1 if data.get("severity") == "Low" else 0,
-    }
+critical = 0
+high = 0
+medium = 0
+low = 0
 
-    labels = []
-    sizes = []
+for incident in incident_history:
 
-    for key, value in severity_counts.items():
-        if value > 0:
-            labels.append(key)
-            sizes.append(value)
+    severity = incident.get("severity", "")
+
+    if severity == "Critical":
+        critical += 1
+
+    elif severity == "High":
+        high += 1
+
+    elif severity == "Medium":
+        medium += 1
+
+    elif severity == "Low":
+        low += 1
+        
+    labels = [
+        f"Critical ({critical})",
+        f"High ({high})",
+        f"Medium ({medium})",
+        f"Low ({low})"
+    ]
+    
+    sizes = [
+        critical,
+        high,
+        medium,
+        low
+    ]
+
+    if sum(sizes) == 0:
+    sizes = [1]
+    labels = ["No Incidents"]
 
     plt.figure(figsize=(4,4))
     plt.pie(
