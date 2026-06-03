@@ -156,6 +156,14 @@ th, td {
     font-size: 18px;
 }
 
+#llm-analysis {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    overflow-x: auto;
+    line-height: 1.5;
+}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -306,10 +314,14 @@ th, td {
 
     <div class="card">
         <h2>🧠 Gemini SOC Analyst</h2>
-        <pre id="llm-analysis">
+        <pre id="llm-analysis" style="
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            max-width: 100%;
+            ">
             Waiting for analysis...
         </pre>
-    
     </div>
 
     <div class="card">
