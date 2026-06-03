@@ -166,19 +166,20 @@ def generate_pdf_report(data, filename, incident_history):
       #  )
  #   )
     
+    summary_text = f"""
+    A {data.get('severity', 'N/A')} severity
+    {data.get('attack', 'N/A')} incident was detected
+    against {data.get('asset', 'N/A')}.
+    
+    Risk Score: {data.get('risk_score', 'N/A')}/100
+    
+    Immediate investigation and containment
+    actions are recommended.
+    """
+    
     content.append(
         Paragraph(
-            f"""
-            A {data.get('severity','N/A')} severity
-            {data.get('attack','N/A')} incident was detected
-            against {data.get('asset','N/A')}.
-    
-            Risk Score:
-            {data.get('risk_score','N/A')}/100
-    
-            Immediate investigation and containment
-            actions are recommended.
-            """,
+            summary_text,
             styles["Normal"]
         )
     )
@@ -201,7 +202,15 @@ def generate_pdf_report(data, filename, incident_history):
     elif mitre_id == "T1486":
         technique_name = "Data Encrypted for Impact"
         tactic = "Impact"
+
+    elif mitre_id == "T1068":
+        technique_name = "Exploitation for Privilege Escalation"
+        tactic = "Privilege Escalation"
     
+    elif mitre_id == "T1110.003":
+        technique_name = "Password Spraying"
+        tactic = "Credential Access"
+        
     content.append(
         Paragraph(
             "MITRE ATT&CK Mapping",
