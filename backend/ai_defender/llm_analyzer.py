@@ -7,19 +7,35 @@ client = genai.Client(api_key=API_KEY)
 
 def analyze_incident(logs):
 
-    prompt = f"""
-You are a SOC Analyst.
+prompt = f"""
+You are a Senior SOC Analyst.
 
-Analyze these logs:
+Analyze these security logs:
 
 {logs}
 
-Provide:
-1. Incident Summary
-2. Business Impact
-3. Recommendations
-4. Confidence Score (0-100)
-5. Verdict (Malicious, Suspicious, Under Investigation)
+Return ONLY this format:
+
+Summary:
+(max 2 lines)
+
+Business Impact:
+(max 2 lines)
+
+Recommendations:
+- recommendation 1
+- recommendation 2
+- recommendation 3
+
+Confidence:
+XX%
+
+Verdict:
+Malicious / Suspicious / Under Investigation
+
+Keep the entire response under 120 words.
+Do not explain your reasoning.
+Do not generate long reports.
 """
 
     response = client.models.generate_content(
