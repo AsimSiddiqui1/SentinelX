@@ -210,6 +210,10 @@ def generate_pdf_report(data, filename, incident_history):
     elif mitre_id == "T1110.003":
         technique_name = "Password Spraying"
         tactic = "Credential Access"
+
+    elif mitre_id == "T1190":
+        technique_name = "Exploit Public-Facing Application"
+        tactic = "Initial Access"
         
     content.append(
         Paragraph(
