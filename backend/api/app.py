@@ -208,24 +208,24 @@ incident_history.append({
     "verdict": verdict
 })
 
- return {
-        "incident_id": incident_id,
-        "attack": detected_attack,
-        "mitre": data["mitre"],
-        "severity": severity,
-        "risk_score": data["risk"],
-        "target_asset": target["id"],
-        "logs": result["logs"],
-        "timeline": timeline,
-        "llm_analysis": llm_analysis,
-        "ioc_ip": ioc_ip,
-        "ioc_domain": ioc_domain,
-        "ai_summary": ai_analysis[detected_attack]["summary"],
-        "business_impact": ai_analysis[detected_attack]["impact"],
-        "recommendations": ai_analysis[detected_attack]["recommendations"],
-        "confidence": confidence,
-        "verdict": verdict,
-    }
+return {
+    "incident_id": incident_id,
+    "attack": detected_attack,
+    "mitre": data["mitre"],
+    "severity": severity,
+    "risk_score": data["risk"],
+    "target_asset": target["id"],
+    "logs": result["logs"],
+    "timeline": timeline,
+    "llm_analysis": llm_analysis,
+    "ioc_ip": ioc_ip,
+    "ioc_domain": ioc_domain,
+    "ai_summary": ai_analysis[detected_attack]["summary"],
+    "business_impact": ai_analysis[detected_attack]["impact"],
+    "recommendations": ai_analysis[detected_attack]["recommendations"],
+    "confidence": confidence,
+    "verdict": verdict
+}
 @app.get("/incident")
 def incident():
 
