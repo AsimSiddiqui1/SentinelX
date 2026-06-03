@@ -49,10 +49,10 @@ Keep the entire response under 120 words.
 
         return response.text
 
-except Exception as e:
-    print("Gemini Error:", e)
+    except Exception as e:
+        print("Gemini Error:", e)
 
-    return """
+        return """
 Summary:
 AI quota exhausted.
 
