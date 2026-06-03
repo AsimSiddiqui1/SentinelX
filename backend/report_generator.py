@@ -67,4 +67,68 @@ def generate_pdf_report(data, filename):
         )
     )
 
-    pdf.build(content)
+    content.append(Spacer(1, 20))
+    
+    content.append(
+        Paragraph("Threat Intelligence", styles["Heading2"])
+    )
+    
+    content.append(
+        Paragraph(
+            f"Suspicious IP: {data.get('ioc_ip', 'N/A')}",
+            styles["Normal"]
+        )
+    )
+    
+    content.append(
+        Paragraph(
+            f"Malicious Domain: {data.get('ioc_domain', 'N/A')}",
+            styles["Normal"]
+        )
+    )
+
+    content.append(Spacer(1, 20))
+
+    content.append(
+        Paragraph("Gemini SOC Analyst", styles["Heading2"])
+    )
+    
+    content.append(
+        Paragraph(
+            f"Summary: {data.get('ai_summary', 'N/A')}",
+            styles["Normal"]
+        )
+    )
+    
+    content.append(
+        Paragraph(
+            f"Business Impact: {data.get('business_impact', 'N/A')}",
+            styles["Normal"]
+        )
+    )
+    
+    content.append(
+        Paragraph(
+            f"Confidence: {data.get('confidence', 'N/A')}%",
+            styles["Normal"]
+        )
+    )
+    
+    content.append(
+        Paragraph(
+            f"Verdict: {data.get('verdict', 'N/A')}",
+            styles["Normal"]
+        )
+    )
+
+    content.append(Spacer(1, 10))
+
+    content.append(
+        Paragraph("Recommendations", styles["Heading3"])
+    )
+    
+    for rec in data.get("recommendations", []):
+        content.append(
+            Paragraph(f"• {rec}", styles["Normal"])
+        )
+        pdf.build(content)
