@@ -414,26 +414,26 @@ def generate_pdf_report(data, filename, incident_history):
         )
     )
     
-    risk = int(data.get("risk_score", 0))
+     risk = int(data.get("risk_score", 0))
     
-    filled = int(risk / 5)
+    if risk >= 80:
+        risk_text = "CRITICAL RISK"
     
-    risk_bar = "█" * filled + "░" * (20 - filled)
+    elif risk >= 60:
+        risk_text = "HIGH RISK"
+    
+    elif risk >= 40:
+        risk_text = "MEDIUM RISK"
+    
+    else:
+        risk_text = "LOW RISK"
     
     content.append(
         Paragraph(
-            f"Risk Score: {risk}",
+            f"Risk Level: {risk_text} ({risk}/100)",
             styles["Normal"]
         )
     )
-    
-    content.append(
-        Paragraph(
-            f"Risk Meter: {risk_bar} {risk}/100",
-            styles["Normal"]
-        )
-    )
-
 
     
     # FOOTER
