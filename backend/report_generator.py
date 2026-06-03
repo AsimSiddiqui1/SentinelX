@@ -1,3 +1,4 @@
+from reportlab.lib.units import mm
 from reportlab.lib.styles import getSampleStyleSheet
 from datetime import datetime
 import matplotlib.pyplot as plt
@@ -9,6 +10,17 @@ from reportlab.platypus import (
 )
 from reportlab.lib.styles import getSampleStyleSheet
 
+def add_page_number(canvas, doc):
+    
+    page_num = canvas.getPageNumber()
+    
+    canvas.setFont("Helvetica", 10)
+    
+    canvas.drawCentredString(
+        105 * mm,
+        10 * mm,
+        str(page_num)
+    )
 
 def generate_pdf_report(data, filename, incident_history):
 
@@ -472,4 +484,8 @@ def generate_pdf_report(data, filename, incident_history):
     )
 
 
-    pdf.build(content)
+    pdf.build(
+        content,
+        onFirstPage=add_page_number,
+        onLaterPages=add_page_number
+    )
