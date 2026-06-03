@@ -302,6 +302,16 @@ th, td {
        </p>
    </div>
 
+    
+
+    <div class="card">
+        <h2>🧠 Gemini SOC Analyst</h2>
+        <pre id="llm-analysis">
+            Waiting for analysis...
+        </pre>
+    
+    </div>
+
     <div class="card">
 
           <h2>Incident History</h2>
@@ -573,6 +583,9 @@ async function launchAttack() {
 
     document.getElementById("ioc-domain").textContent =
     data.ioc_domain;
+
+    document.getElementById("llm-analysis").textContent =
+    data.llm_analysis;
 
     let threat = "Low";
     
