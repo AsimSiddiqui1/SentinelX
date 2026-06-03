@@ -7,7 +7,7 @@ client = genai.Client(api_key=API_KEY)
 
 def analyze_incident(logs):
 
-prompt = f"""
+    prompt = f"""
 You are a Senior SOC Analyst.
 
 Analyze these security logs:
