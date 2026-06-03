@@ -1,3 +1,4 @@
+from backend.ai_defender.llm_analyzer import analyze_incident
 from backend.report_generator import generate_pdf_report
 from backend.attack_engine.attack_simulator import simulate_attack
 from backend.ai_defender.ai_defender import detect_attack
@@ -105,6 +106,9 @@ def launch_attack(attack_type: str):
         verdict = "Under Investigation"
 
     timeline = generate_timeline()
+    llm_analysis = analyze_incident(
+    result["logs"]
+    )
     ioc_ip = random.choice(ips)
     ioc_domain = random.choice(domains)
 
@@ -187,6 +191,7 @@ def launch_attack(attack_type: str):
         "target_asset": target["id"],
         "logs": result["logs"],
         "timeline": timeline,
+        "llm_analysis": llm_analysis,
         "ioc_ip": ioc_ip,
         "ioc_domain": ioc_domain,
         "ai_summary": ai_analysis[detected_attack]["summary"],
