@@ -157,14 +157,14 @@ def generate_pdf_report(data, filename, incident_history):
 
     content.append(Spacer(1, 20))
 
-    content.append(Spacer(1, 20))
+   # content.append(Spacer(1, 20))
 
-    content.append(
-        Paragraph(
-            "Executive Summary",
-            styles["Heading1"]
-        )
-    )
+  #  content.append(
+    #    Paragraph(
+     #       "Executive Summary",
+      #      styles["Heading1"]
+      #  )
+ #   )
     
     content.append(
         Paragraph(
