@@ -1,3 +1,4 @@
+from fastapi.staticfiles import StaticFiles
 from backend.ai_defender.llm_analyzer import analyze_incident
 from backend.report_generator import generate_pdf_report
 from backend.attack_engine.attack_simulator import simulate_attack
@@ -31,6 +32,12 @@ from backend.database.assets import assets
 app = FastAPI(
     title="SentinelX API",
     version="1.0"
+)
+
+app.mount(
+    "/static",
+    StaticFiles(directory="backend/assets"),
+    name="static"
 )
 
 app.add_middleware(
