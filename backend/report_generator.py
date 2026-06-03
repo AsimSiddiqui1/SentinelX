@@ -435,11 +435,6 @@ def generate_pdf_report(data, filename, incident_history):
     )
 
 
-    # Security Analytics
-    ...
-    content.append(chart)
-    
-    content.append(Spacer(1,20))
     
     # FOOTER
     content.append(
