@@ -1,15 +1,30 @@
-import google.generativeai as genai
+from google import genai
 
-API_KEY = "AQ.Ab8RN6KmlYOw4gmplgCkevUPLbpiyCx1WNVOMqWcsW4CR2j1kQ"
+API_KEY = "AQ.Ab8RN6Jno6bKXeYcOE-P_VyCiHoXmw8dLhe0zUUhxxljnV4MxA"
 
-genai.configure(api_key="YOUR_API_KEY")
+client = genai.Client(api_key=API_KEY)
 
-model = genai.GenerativeModel(
-    "models/gemini-2.5-flash-lite"
-)
 
-response = model.generate_content(
-    "What is phishing? Answer in one sentence."
-)
+def analyze_incident(logs):
 
-print(response.text)
+    prompt = f"""
+You are a SOC Analyst.
+
+Analyze these logs:
+
+{logs}
+
+Provide:
+1. Incident Summary
+2. Business Impact
+3. Recommendations
+4. Confidence Score (0-100)
+5. Verdict (Malicious, Suspicious, Under Investigation)
+"""
+
+    response = client.models.generate_content(
+        model="gemini-2.5-flash-lite",
+        contents=prompt
+    )
+
+    return response.text
