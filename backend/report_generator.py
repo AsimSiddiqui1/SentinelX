@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from reportlab.platypus import Image
 from reportlab.platypus import (
     SimpleDocTemplate,
     Paragraph,
@@ -238,6 +237,14 @@ def generate_pdf_report(data, filename):
         )
     )
     
+    chart = Image(
+        "severity_chart.png",
+        width=250,
+        height=250
+    )
+
+    content.append(chart)
+        
     content.append(
         Paragraph(
             f"Severity: {data.get('severity', 'N/A')}",
