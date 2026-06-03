@@ -46,8 +46,8 @@ def generate_pdf_report(data, filename, incident_history):
     ]
 
     if sum(sizes) == 0:
-    sizes = [1]
-    labels = ["No Incidents"]
+        sizes = [1]
+        labels = ["No Incidents"]
 
     plt.figure(figsize=(4,4))
     plt.pie(
