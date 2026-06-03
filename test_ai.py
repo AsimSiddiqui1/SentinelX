@@ -6,6 +6,4 @@ logs = [
     "Suspicious authentication request"
 ]
 
-result = analyze_incident(logs)
-
-print(result)
+print(analyze_incident(logs))
