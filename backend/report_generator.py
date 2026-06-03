@@ -31,29 +31,43 @@ def generate_pdf_report(data, filename, incident_history):
         elif severity == "Low":
             low += 1
         
-    labels = [
-        f"Critical ({critical})",
-        f"High ({high})",
-        f"Medium ({medium})",
-        f"Low ({low})"
-    ]
+    labels = []
+    sizes = []
+    colors = []
     
-    sizes = [
-        critical,
-        high,
-        medium,
-        low
-    ]
-
-    if sum(sizes) == 0:
-        sizes = [1]
+    if critical > 0:
+        labels.append(f"Critical ({critical})")
+        sizes.append(critical)
+        colors.append("#E53935")
+    
+    if high > 0:
+        labels.append(f"High ({high})")
+        sizes.append(high)
+        colors.append("#FB6A00")
+    
+    if medium > 0:
+        labels.append(f"Medium ({medium})")
+        sizes.append(medium)
+        colors.append("#D4A000")
+    
+    if low > 0:
+        labels.append(f"Low ({low})")
+        sizes.append(low)
+        colors.append("#1FA640")
+    
+    if len(sizes) == 0:
         labels = ["No Incidents"]
-
+        sizes = [1]
+        colors = ["#808080"]
+    
     plt.figure(figsize=(4,4))
+    
     plt.pie(
         sizes,
         labels=labels,
-        autopct="%1.0f%%"
+        colors=colors,
+        autopct="%1.0f%%",
+        wedgeprops={"edgecolor": "white", "linewidth": 2}
     )
     plt.title("Severity Distribution")
     plt.savefig("severity_chart.png")
