@@ -208,7 +208,7 @@ incident_history.append({
     "verdict": verdict
 })
 
-    return {
+ return {
         "incident_id": incident_id,
         "attack": detected_attack,
         "mitre": data["mitre"],
