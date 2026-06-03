@@ -10,26 +10,26 @@ from reportlab.lib.styles import getSampleStyleSheet
 
 def generate_pdf_report(data, filename, incident_history):
 
-critical = 0
-high = 0
-medium = 0
-low = 0
+    critical = 0
+    high = 0
+    medium = 0
+    low = 0
+    
+    for incident in incident_history:
 
-for incident in incident_history:
-
-    severity = incident.get("severity", "")
-
-    if severity == "Critical":
-        critical += 1
-
-    elif severity == "High":
-        high += 1
-
-    elif severity == "Medium":
-        medium += 1
-
-    elif severity == "Low":
-        low += 1
+        severity = incident.get("severity", "")
+    
+        if severity == "Critical":
+            critical += 1
+    
+        elif severity == "High":
+            high += 1
+    
+        elif severity == "Medium":
+            medium += 1
+    
+        elif severity == "Low":
+            low += 1
         
     labels = [
         f"Critical ({critical})",
