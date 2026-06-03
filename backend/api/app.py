@@ -192,27 +192,27 @@ def launch_attack(attack_type: str):
         },
     }
 
-incident_history.append({
-    "incident_id": incident_id,
-    "attack": detected_attack,
-    "severity": severity,
-    "asset": target["id"],
-    "mitre": data["mitre"],
-    "risk_score": data["risk"],
-
-    "logs": result["logs"],
-    "timeline": timeline,
-
-    "ioc_ip": ioc_ip,
-    "ioc_domain": ioc_domain,
-
-    "ai_summary": ai_analysis[detected_attack]["summary"],
-    "business_impact": ai_analysis[detected_attack]["impact"],
-    "recommendations": ai_analysis[detected_attack]["recommendations"],
-
-    "confidence": confidence,
-    "verdict": verdict
-})
+    incident_history.append({
+        "incident_id": incident_id,
+        "attack": detected_attack,
+        "severity": severity,
+        "asset": target["id"],
+        "mitre": data["mitre"],
+        "risk_score": data["risk"],
+    
+        "logs": result["logs"],
+        "timeline": timeline,
+    
+        "ioc_ip": ioc_ip,
+        "ioc_domain": ioc_domain,
+    
+        "ai_summary": ai_analysis[detected_attack]["summary"],
+        "business_impact": ai_analysis[detected_attack]["impact"],
+        "recommendations": ai_analysis[detected_attack]["recommendations"],
+    
+        "confidence": confidence,
+        "verdict": verdict
+    })
 
     return {
         "incident_id": incident_id,
