@@ -11,6 +11,33 @@ from reportlab.lib.styles import getSampleStyleSheet
 
 def generate_pdf_report(data, filename):
 
+    severity_counts = {
+        "Critical": 1 if data.get("severity") == "Critical" else 0,
+        "High": 1 if data.get("severity") == "High" else 0,
+        "Medium": 1 if data.get("severity") == "Medium" else 0,
+        "Low": 1 if data.get("severity") == "Low" else 0,
+    }
+
+    labels = []
+    sizes = []
+
+    for key, value in severity_counts.items():
+        if value > 0:
+            labels.append(key)
+            sizes.append(value)
+
+    plt.figure(figsize=(4,4))
+    plt.pie(
+        sizes,
+        labels=labels,
+        autopct="%1.0f%%"
+    )
+    plt.title("Severity Distribution")
+    plt.savefig("severity_chart.png")
+    plt.close()
+
+    pdf = SimpleDocTemplate(filename)
+
     pdf = SimpleDocTemplate(filename)
 
     styles = getSampleStyleSheet()
