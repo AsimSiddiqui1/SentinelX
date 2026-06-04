@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+jinja2
+reportlab
+matplotlib
+python-multipart
+google-generativeai
