@@ -130,16 +130,36 @@ SentinelX
 ## Screenshots
 
 ### Dashboard
-![Dashboard](screenshots/Dashboard1.png)
-![Dashboard](screenshots/Dashboard2.png)
-![Dashboard](screenshots/Dashboard3.png)
+
+<p align="center">
+  <img src="screenshots/Dashboard1.png" width="700">
+</p>
+
+<p align="center">
+  <img src="screenshots/Dashboard2.png" width="700">
+</p>
+
+<p align="center">
+  <img src="screenshots/Dashboard3.png" width="700">
+</p>
 
 ### Incident Report
-![Report](screenshots/Report1.png)
-![Report](screenshots/Report2.png)
+
+<p align="center">
+  <img src="screenshots/Report1.png" width="700">
+</p>
+
+<p align="center">
+  <img src="screenshots/Report2.png" width="700">
+</p>
+
 
 ### Export History
-![Analytics](screenshots/Export_history.png)
+
+<p align="center">
+  <img src="screenshots/Export_history.png" width="700">
+</p>
+
 
 
 ---
