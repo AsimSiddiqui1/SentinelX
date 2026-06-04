@@ -128,17 +128,16 @@ SentinelX
 ## Screenshots
 
 ### Dashboard
-
-(Add Dashboard Screenshot)
+![Dashboard](screenshots/dashboard.png)
 
 ### Incident Report
-
-(Add PDF Report Screenshot)
+![Report](screenshots/report.png)
 
 ### Security Analytics
+![Analytics](screenshots/analytics.png)
 
-(Add Analytics Screenshot)
-
+### Architecture
+![Architecture](screenshots/architecture.png)
 ---
 
 ## Installation
