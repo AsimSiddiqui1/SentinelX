@@ -195,6 +195,7 @@ Open your browser and navigate to:
 
 ```text
 http://127.0.0.1:8000
+add /dashboard to the url and press enter.
 ```
 ---
 
