@@ -33,6 +33,9 @@ SentinelX helps security analysts, students, and SOC teams understand attack beh
 
 ## Architecture
 
+
+![SentinelX Architecture](screenshots/architecture.png)
+
 ```text
 User
  │
