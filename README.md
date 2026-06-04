@@ -136,8 +136,7 @@ SentinelX
 ### Security Analytics
 ![Analytics](screenshots/analytics.png)
 
-### Architecture
-![Architecture](screenshots/architecture.png)
+
 ---
 
 ## Installation
