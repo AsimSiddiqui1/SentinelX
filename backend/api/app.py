@@ -1,3 +1,5 @@
+from fastapi.responses import FileResponse
+import csv
 from fastapi.staticfiles import StaticFiles
 from backend.ai_defender.llm_analyzer import analyze_incident
 from backend.report_generator import generate_pdf_report
@@ -299,5 +301,49 @@ def report():
     return FileResponse(
         filename,
         media_type="application/pdf",
+        filename=filename
+    )
+
+@app.get("/export-history")
+def export_history():
+
+    filename = "SentinelX_History.csv"
+
+    with open(
+        filename,
+        "w",
+        newline="",
+        encoding="utf-8"
+    ) as file:
+
+        writer = csv.writer(file)
+
+        writer.writerow([
+            "Incident ID",
+            "Attack Type",
+            "Severity",
+            "MITRE",
+            "Risk Score",
+            "Asset",
+            "Confidence",
+            "Verdict"
+        ])
+
+        for incident in incident_history:
+
+            writer.writerow([
+                incident.get("incident_id", ""),
+                incident.get("attack", ""),
+                incident.get("severity", ""),
+                incident.get("mitre", ""),
+                incident.get("risk_score", ""),
+                incident.get("asset", ""),
+                incident.get("confidence", ""),
+                incident.get("verdict", "")
+            ])
+
+    return FileResponse(
+        filename,
+        media_type="text/csv",
         filename=filename
     )
