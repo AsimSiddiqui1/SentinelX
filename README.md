@@ -146,11 +146,11 @@ SentinelX
 ### Incident Report
 
 <p align="center">
-  <img src="screenshots/Report1.png" width="700">
+  <img src="screenshots/Report1.png" width="400">
 </p>
 
 <p align="center">
-  <img src="screenshots/Report2.png" width="700">
+  <img src="screenshots/Report2.png" width="400">
 </p>
 
 
