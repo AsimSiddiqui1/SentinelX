@@ -114,6 +114,21 @@ SentinelX
 
 ---
 
+## Project Status
+
+✅ Completed
+
+- Attack Simulation Engine
+- AI Defender
+- MITRE ATT&CK Mapping
+- Threat Intelligence
+- Incident Timeline
+- PDF Report Generator
+- CSV Export
+- Security Analytics Dashboard
+
+---
+  
 ## Future Enhancements
 
 * Real-Time Threat Feed Integration
@@ -176,6 +191,11 @@ pip install -r requirements.txt
 uvicorn backend.api.app:app --reload
 ```
 
+Open your browser and navigate to:
+
+```text
+http://127.0.0.1:8000
+```
 ---
 
 ## Author
@@ -183,3 +203,5 @@ uvicorn backend.api.app:app --reload
 **Asim Siddiqui**
 
 Cybersecurity Enthusiast | SOC Analyst
+
+GitHub: https://github.com/AsimSiddiqui1
