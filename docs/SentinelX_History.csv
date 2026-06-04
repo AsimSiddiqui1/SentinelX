@@ -1,0 +1,7 @@
+Incident ID,Attack Type,Severity,MITRE,Risk Score,Asset,Confidence,Verdict
+INC-2026-9035,Phishing,High,T1566,85,HR-PC-01,92,Suspicious
+INC-2026-7870,Brute Force,Low,T1110,40,WEB-01,91,Under Investigation
+INC-2026-2464,Ransomware,Critical,T1486,95,WEB-01,87,Malicious
+INC-2026-9823,Web Exploitation,High,T1190,80,DB-01,88,Suspicious
+INC-2026-7085,Password Spray,Medium,T1110.003,70,WEB-01,91,Under Investigation
+INC-2026-6147,Privilege Escalation,Medium,T1068,65,DB-01,92,Under Investigation
