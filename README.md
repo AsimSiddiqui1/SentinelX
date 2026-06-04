@@ -128,13 +128,16 @@ SentinelX
 ## Screenshots
 
 ### Dashboard
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](screenshots/Dashboard1.png)
+![Dashboard](screenshots/Dashboard2.png)
+![Dashboard](screenshots/Dashboard3.png)
 
 ### Incident Report
-![Report](screenshots/report.png)
+![Report](screenshots/Report1.png)
+![Report](screenshots/Report2.png)
 
-### Security Analytics
-![Analytics](screenshots/analytics.png)
+### Export History
+![Analytics](screenshots/Export_history.png)
 
 
 ---
