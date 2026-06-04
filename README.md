@@ -167,7 +167,7 @@ SentinelX
 ## Installation
 
 ```bash
-git clone https://github.com/your-repository/SentinelX.git
+git clone https://github.com/AsimSiddiqui1/SentinelX.git
 
 cd SentinelX
 
