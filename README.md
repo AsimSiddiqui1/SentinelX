@@ -182,4 +182,4 @@ uvicorn backend.api.app:app --reload
 
 **Asim Siddiqui**
 
-Cybersecurity Enthusiast | SOC Analyst | AI Security Researcher
+Cybersecurity Enthusiast | SOC Analyst
