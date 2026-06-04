@@ -1,67 +1,159 @@
 # SentinelX
 
-AI-Powered Cyber Attack Simulation and Defense Platform for SOC Training, Threat Detection, Incident Response, and MITRE ATT&CK Mapping.
+AI-Powered Security Operations Center (SOC) Simulation Platform for Cyber Attack Detection, Threat Intelligence, Incident Response, and MITRE ATT&CK Mapping.
+
+---
 
 ## Overview
 
-SentinelX is a cybersecurity simulation platform designed to emulate real-world enterprise attacks and defensive operations. The platform generates realistic attack scenarios, analyzes security events using AI, maps threats to the MITRE ATT&CK framework, and produces automated incident response reports.
+SentinelX is an AI-powered cybersecurity simulation platform designed to emulate real-world enterprise cyber attacks and defensive operations. The platform generates realistic attack scenarios, analyzes security events using AI, maps threats to the MITRE ATT&CK framework, generates threat intelligence indicators, and produces professional incident response reports.
+
+SentinelX helps security analysts, students, and SOC teams understand attack behavior, incident response workflows, and threat detection techniques within a controlled environment.
+
+---
 
 ## Key Features
 
-- Attack Simulation Engine
-- AI Defender Engine
-- Security Log Generation
-- MITRE ATT&CK Mapping
-- Incident Response Automation
-- Threat Intelligence Integration
-- SOC Dashboard
-- Risk Scoring System
-- Attack Path Visualization
-- Report Generation
+* Attack Simulation Engine
+* AI Defender Engine
+* Security Log Generation
+* MITRE ATT&CK Framework Mapping
+* Threat Intelligence (IOC Generation)
+* AI-Powered Incident Analysis
+* Incident Timeline Generation
+* Incident Response Automation
+* Risk Scoring System
+* SOC Dashboard
+* Severity Analytics Visualization
+* PDF Incident Report Generation
+* CSV Incident History Export
+* Attack Path Visualization
+
+---
 
 ## Architecture
 
-Coming Soon
+```text
+User
+ │
+ ▼
+SOC Dashboard (HTML/CSS/JavaScript)
+ │
+ ▼
+FastAPI Backend
+ │
+ ├── Attack Simulator
+ ├── AI Defender
+ ├── MITRE ATT&CK Mapping
+ ├── Threat Intelligence Engine
+ ├── Incident Timeline Generator
+ ├── Risk Scoring Engine
+ └── Incident History Database
+ │
+ ▼
+PDF Reports & CSV Exports
+```
+
+---
+
+## Tech Stack
+
+* Python
+* FastAPI
+* HTML5
+* CSS3
+* JavaScript
+* Chart.js
+* ReportLab
+* Gemini AI
+
+---
 
 ## Project Structure
 
-```
+```text
 SentinelX
 │
 ├── backend
-├── frontend
-├── docs
+│   ├── api
+│   ├── attack_engine
+│   ├── ai_defender
+│   ├── database
+│   ├── shared
+│   ├── templates
+│   └── assets
+│
 ├── screenshots
 ├── architecture
-├── datasets
+├── docs
+│
 └── README.md
 ```
 
-## Roadmap
+---
 
-### Phase 1
-- [ ] Network Simulation
-- [ ] Asset Inventory
-- [ ] Dashboard Skeleton
+## Features Demonstrated
 
-### Phase 2
-- [ ] Attack Simulator
-- [ ] Log Generator
-- [ ] Event Storage
+* Phishing Attack Simulation
+* Brute Force Attack Simulation
+* Password Spray Attack Simulation
+* Web Exploitation Simulation
+* Privilege Escalation Simulation
+* Ransomware Simulation
+* Automated Severity Classification
+* IOC Generation (IP & Domain)
+* AI-Based Threat Analysis
+* Incident Timeline Creation
+* Professional PDF Report Generation
+* CSV Incident History Export
 
-### Phase 3
-- [ ] AI Defender
-- [ ] Threat Detection
-- [ ] Risk Scoring
+---
 
-### Phase 4
-- [ ] MITRE ATT&CK Mapping
-- [ ] Incident Reports
+## Future Enhancements
 
-### Phase 5
-- [ ] Threat Intelligence Integration
-- [ ] Advanced Visualizations
+* Real-Time Threat Feed Integration
+* SIEM Integration
+* User Authentication & RBAC
+* Email Alerting System
+* Live Log Monitoring
+* Malware Sandbox Integration
+* Advanced Threat Hunting Module
+* Cloud Security Monitoring
+
+---
+
+## Screenshots
+
+### Dashboard
+
+(Add Dashboard Screenshot)
+
+### Incident Report
+
+(Add PDF Report Screenshot)
+
+### Security Analytics
+
+(Add Analytics Screenshot)
+
+---
+
+## Installation
+
+```bash
+git clone https://github.com/your-repository/SentinelX.git
+
+cd SentinelX
+
+pip install -r requirements.txt
+
+uvicorn backend.api.app:app --reload
+```
+
+---
 
 ## Author
 
-Asim Siddiqui
+**Asim Siddiqui**
+
+Cybersecurity Enthusiast | SOC Analyst | AI Security Researcher
