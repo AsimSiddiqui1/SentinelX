@@ -175,7 +175,10 @@ SentinelX
   <img src="screenshots/Export_history.png" width="700">
 </p>
 
+## Demo Video
 
+🎥 SentinelX Demonstration:
+https://drive.google.com/file/d/1BCtUz81ZaMDE0oJaMKDjpm6OxMBnXIIc/view?usp=drivesdk
 
 ---
 
